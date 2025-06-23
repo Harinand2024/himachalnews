@@ -1,7 +1,7 @@
 {% include "head.html" %}
 {% block body %}
 {% load static %}
-<div class="container-fluid dxb-bg-dashbord">
+<div class="container-fluid ">
     <div class="row">
         <div class="col-lg-2 col-md-12 col-sm-12 p-0">
             {% include "inn/Journalist_menu.html" %}
@@ -253,7 +253,7 @@ $('#tags').select2({
 
 <style>
     .dxb-bg-dashbord {
-        background: #b1b1b1;
+        background: #f1f1f1;
         min-height: 100vh;
         width: 100%;
     }
@@ -263,11 +263,14 @@ $('#tags').select2({
         padding: 15px 30px;
         font-size: 18px;
         font-weight: 500;
+        background: #f1f1f1;
     }
-
     .news-post {
-        padding: 40px;
-        background: #eeeeee;
+           border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 50px 50px;
+       
     }
 
     .submit-btn {
@@ -312,5 +315,25 @@ $('#tags').select2({
     .form-control.is-invalid + .invalid-feedback {
         display: block;
     }
+    @media (min-width: 280px) and (max-width: 667px) {
+    .news-post {
+        border: 1px solid #ddd;
+        padding: 10px;
+        border-radius: 8px;
+        margin: 20px;
+    }
+        .dash-title {
+        text-align: center;
+    }
+
+}
+
+@media (min-width: 767px) and (max-width: 992px) {
+    .dash-title {
+        text-align: center;
+    }
+}
+
+
 </style>
 {% endblock %}
