@@ -1,0 +1,9 @@
+# Ignore the SQLite database
+db.sqlite3
+
+# Ignore user uploads
+upload/
+
+# Ignore static files collected for deployment
+staticfiles_build/
+static_collect/
