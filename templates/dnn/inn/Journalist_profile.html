@@ -9,10 +9,10 @@
         </div>
         <!-- Main Dashboard Content -->
         <div class="col-lg-10 p-0">
-            <h3 class="dash-title">Profile</h3>
+            <h3 class="container-fluid py-3 px-4 dash-title">Profile</h3>
             <section class="content">
                 <div class="news-post bg-light">
-                    <div class="align-item-center mx-5">
+                    <div class="align-item-center">
                         <div class="position-relative rounded overflow-hidden" style="height: 250px;">
                             <!-- Banner Image -->
                             <img src="{% if journalist.banner %}{{ journalist.banner.url }}{% else %}{% static 'assets/dnn/img/defoult_banner.jpg' %}{% endif %}"
@@ -405,7 +405,7 @@
 
 
     .dxb-bg-dashbord {
-        background: #b1b1b1;
+        background: #f1f1f1;
         min-height: 100vh;
         width: 100%;
     }
@@ -419,11 +419,12 @@
         padding: 15px 30px;
         font-size: 18px;
         font-weight: 500;
+        background: #f1f1f1;
     }
 
     .news-post {
         padding: 40px;
-        background: #f4d8e7;
+       
     }
 
 
@@ -575,6 +576,46 @@
 
     .btn-outline-primary {
         border-radius: 25px;
+    }
+
+     /* Mobile styles - phones and small tablets */
+    @media (min-width: 280px) and (max-width: 667px) {
+        .dash-title {
+            text-align: center;
+        }
+
+        .news-post {
+            padding: 20px;
+           
+        }
+
+        .service-details {
+            width: 100%;
+            left: 0;
+        }
+        .service-details .service-text p{
+           padding: 60px 0px 0px 0px;
+            font-size: 18px;
+            text-align: center
+        }
+    }
+
+    /* Laptop/Desktop styles - medium to large devices */
+    @media (min-width: 767px) and (max-width: 992px) {
+        .dash-title {
+            text-align: center;
+            /* or whatever you prefer */
+        }
+
+        .news-post {
+            padding: 40px;
+            background: #ffffff;
+        }
+
+        .service-details {
+            width: 72%;
+            left: 14%;
+        }
     }
 </style>
 

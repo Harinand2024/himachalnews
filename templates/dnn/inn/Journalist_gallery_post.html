@@ -2,7 +2,7 @@
 {% block body %}
 {% load static %}
 
-<div class="container-fluid dxb-bg-dashbord">
+<div class="container-fluid">
     <div class="row">
         <!-- Sidebar -->
         <div class="col-lg-2 col-md-3 col-sm-12 p-0">
@@ -10,7 +10,7 @@
         </div>
 
         <!-- Main Content -->
-        <div class="col-lg-10 col-md-9 col-sm-12 p-0">
+        <div class="col-lg-10 p-0">
             <h3 class="dash-title">Portfolio</h3>
             <section class="content">
                 <div class="news-post bg-light">
@@ -167,11 +167,14 @@
         padding: 15px 30px;
         font-size: 18px;
         font-weight: 500;
+        background: #f1f1f1;
     }
-
     .news-post {
-        padding: 40px;
-        background: #f4d8e7;
+           border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 50px 50px;
+       
     }
 
     .gallery-image {
@@ -252,6 +255,25 @@
         background: #b61015 !important;
         color: #fff;
     }
+ @media (min-width: 280px) and (max-width: 667px) {
+    .news-post {
+        border: 1px solid #ddd;
+        padding: 10px;
+        border-radius: 8px;
+        margin: 20px;
+    }
+        .dash-title {
+        text-align: center;
+    }
+}
+    
+@media (min-width: 767px) and (max-width: 992px) {
+    .dash-title {
+        text-align: center;
+    }
+}
+
+
 </style>
 
 {% endblock %}

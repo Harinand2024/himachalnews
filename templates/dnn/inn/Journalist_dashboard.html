@@ -13,15 +13,14 @@
 
         <div class="col-lg-10 p-0">
             <div class="container-fluid py-3 px-4 dash-title">
-                <div class="row align-items-center">
-                    <div class="col-md-6 col-12 mb-2 mb-md-0">
+                <div class="row align-items-center ">
+                    <div class="col-lg-8 col-md-8 col-sm-12 mb-2 mb-md-0 m-mrgiin-top">
                         <h5 class="mb-0 fw-semibold">Welcome back, {{ journalist.first_name }} {{ journalist.last_name }}</h5>
-                        <small class="text-white">Welcome back, {{ journalist.first_name }}
+                        <small class="">Welcome back, {{ journalist.first_name }}
                             {{ journalist.last_name }}! Here is an overview of your content.</small>
                     </div>
 
-                    <div
-                        class="col-md-6 col-12 text-md-end text-start d-flex justify-content-md-end justify-content-start align-items-center gap-3">
+                    <div class="col-lg-4 col-md-4 col-sm-12 text-md-end text-start d-flex justify-content-md-end    justify-content-start align-items-center gap-3">
                         {% if journalist.registration_type == "artist" %}
                         <a style="text-decoration: none;" href="{% static 'assets/dnn/docs/ArtDomain_Artist.pdf' %}" download>
                             <button type="button" class="btn btn-info"><i class="fas fa-download"></i> Artist Guide</button>
@@ -88,13 +87,13 @@
                         <div class="row">
                             <div class="col-lg-3 col-md-6">
                                 <a href="#" class="" onclick="showDetails('posts-info')">
-                                    <div class="dash-box bg-primary">
+                                    <div class="dash-box bg-light">
                                         <div class="icon">
                                             <i class="fa fa-file-alt"></i>
                                         </div>
                                         <div class="inner">
                                             <p>Total Active Posts</p>
-                                            <h3 class="text-white">{{ total_active_posts_count }}</h3>
+                                            <h3 class="">{{ total_active_posts_count }}</h3>
                                         </div>
                                         <div class="box-footer" onclick="showDetails('posts-info')">More info <i
                                                 class="fa fa-arrow-circle-right"></i></div>
@@ -106,13 +105,13 @@
 
                             <div class="col-lg-3 col-md-6">
                                 <a href="#" class="" onclick="showDetails('articles-info')">
-                                    <div class="dash-box bg-primary">
+                                    <div class="dash-box bg-light">
                                         <div class="icon">
                                             <i class="fa fa-newspaper"></i>
                                         </div>
                                         <div class="inner">
                                             <p>Total Active Articles</p>
-                                            <h3 class="text-white">{{ total_active_articles_count }}</h3>
+                                            <h3 class="">{{ total_active_articles_count }}</h3>
 
                                         </div>
 
@@ -125,13 +124,13 @@
                             <!-- Total Video Posts -->
                             <div class="col-lg-3 col-md-6">
                                 <a href="#" class="" onclick="showDetails('videos-info')">
-                                    <div class="dash-box bg-primary">
+                                    <div class="dash-box bg-light">
                                         <div class="icon">
                                             <i class="fa fa-video"></i>
                                         </div>
                                         <div class="inner">
                                             <p>Active Video Posts</p>
-                                            <h3 class="text-white">{{ active_video_count }}</h3>
+                                            <h3 class="">{{ active_video_count }}</h3>
                                         </div>
 
                                         <div class="box-footer" onclick="showDetails('videos-info')">More info <i
@@ -143,13 +142,13 @@
                             <!-- Trending Posts -->
                             <div class="col-lg-3 col-md-6">
                                 <a href="#" class="" onclick="showDetails('trending-info')">
-                                    <div class="dash-box bg-primary">
+                                    <div class="dash-box bg-light">
                                         <div class="icon">
                                             <i class="fa fa-film"></i>
                                         </div>
                                         <div class="inner">
                                             <p>Active Reel Posts</p>
-                                            <h3 class="text-white">{{ active_reels_count }}</h3>
+                                            <h3 class="">{{ active_reels_count }}</h3>
                                         </div>
 
                                         <div class="box-footer" onclick="showDetails('trending-info')">More info <i
@@ -277,10 +276,12 @@
         text-decoration: none;
         color: #4b3e82 !important;
         padding: 5px 0px;
+        
     }
 
     .das-section a:hover {
-        text-decoration: underline;
+        text-decoration: none;
+        color: #fff;
     }
 
     .post-data {
@@ -324,7 +325,7 @@
     .dash-title {
         color: #000;
         padding: 15px 30px;
-        background: #b1b1b1;
+        background: #f1f1f1;
         font-size: 18px;
         font-weight: 500;
     }
@@ -340,16 +341,17 @@
         box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
         transition: all 0.3s ease-in-out;
         background: #fff;
+        text-decoration: none;
     }
 
-    .dash-box:hover,
+    /*.dash-box:hover,
     .dash-box.active {
         transform: translateY(-5px);
         background: linear-gradient(to bottom right, #2164a9, #c81e26) !important;
         color: #fff !important;
         box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
         border: none;
-    }
+    }*/
 
     .dash-box h3 {
         font-size: 36px;
@@ -363,9 +365,9 @@
     }
 
     .dash-box .icon {
-        font-size: 40px;
+        font-size: 30px;
         opacity: 0.8;
-        color: #fff;
+        color: #666;
     }
 
     .box-footer {
@@ -398,11 +400,7 @@
         color: #dc3545 !important;
     }
 
-    @media (max-width: 768px) {
-        .dash-box {
-            margin-bottom: 15px;
-        }
-    }
+   
 
     .dhamaka-download-button {
         padding: 14px 28px;
@@ -435,6 +433,16 @@
 
     .dhamaka-download-button.organisation:hover {
         background: linear-gradient(45deg, #0072ff, #ff6a00);
+    }
+
+     @media (max-width: 768px) {
+        .dash-box {
+            margin-bottom: 20px;
+            max-width: 100%;
+        }
+        .m-mrgiin-top{
+            margin-top: 30px;
+        }
     }
 </style>
 

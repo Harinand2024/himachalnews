@@ -1,13 +1,13 @@
 {% include "head.html" %}
 {% block body %}
 {% load static %}
-<div class="container-fluid dxb-bg-dashbord">
+<div class="container-fluid ">
     <div class="row">
         <div class="col-lg-2 p-0">
             {% include "inn/Journalist_menu.html" %}
         </div>
         <div class="col-lg-10 p-0">
-            <h3 class="dash-title">News Post</h3>
+            <h3 class="dash-title">Video Post</h3>
             <section class="content">
                 <div class="news-post bg-light">
 
@@ -256,10 +256,12 @@ $('#tags').select2({
         padding: 15px 30px;
         font-size: 18px;
         font-weight: 500;
+        background: #f1f1f1;
     }
     .news-post {
-        padding: 40px;
-        background: #eeeeee;
+        padding: 20px;
+        margin:40px;
+       
     }
 
     .submit-btn {
@@ -298,5 +300,24 @@ $('#tags').select2({
     .priority-label {
         font-size: 15px;
     }
+
+     @media (min-width: 280px) and (max-width: 667px) {
+    .news-post {
+        margin: 20px;
+         border: 1px solid #ddd;
+        padding: 10px;
+        border-radius: 8px;
+    }
+        .dash-title {
+        text-align: center;
+    }
+}
+@media (min-width: 767px) and (max-width: 992px) {
+    .dash-title {
+        text-align: center;
+    }
+}
+
+
 </style>
 {% endblock %}
