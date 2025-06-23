@@ -147,28 +147,65 @@
    display: none;
   }
 
-  /* Mobile view */
-  @media (max-width: 768px) {
-    .sidebar-container {
-      transform: translateX(-100%);
-    }
-
-    .sidebar-container.open {
-      transform: translateX(0);
-    }
-
-    .sidebar-toggle-btn {
-        display: block;
-        position: fixed;
-        top: 0;
-        left: 0;
-        background: #f1f1f1;
-        border: none;
-        padding: 6px 12px;
-        font-size: 16px;
-        border-radius: 5px;
-        z-index: 99999;
-       
-    }
+   /* Mobile view (phones) */
+@media (max-width: 768px) {
+  .sidebar-container {
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
   }
+
+  .sidebar-container.open {
+    transform: translateX(0);
+  }
+
+  .sidebar-toggle-btn {
+    display: block;
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    background: #f1f1f1;
+    border: none;
+    padding: 6px 12px;
+    font-size: 16px;
+    border-radius: 5px;
+    z-index: 99999;
+  }
+}
+
+/* iPad Air & iPad Pro Portrait Mode */
+@media (max-width: 1024px) and (min-width: 768px) {
+  .sidebar-container {
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .sidebar-container.open {
+    transform: translateX(0);
+  }
+
+  .sidebar-toggle-btn {
+    display: block;
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    background: #f1f1f1;
+    border: none;
+    padding: 6px 12px;
+    font-size: 16px;
+    border-radius: 5px;
+    z-index: 99999;
+  }
+}
+@media (max-width: 1366px) and (min-width: 1025px) {
+  .sidebar-container {
+    /* You can keep it visible or toggleable */
+    transform: translateX(0); /* Show by default if desired */
+  }
+
+  .sidebar-toggle-btn {
+    display: none; /* Or show it if you want toggle always */
+  }
+}
+
+
 </style>
