@@ -173,6 +173,16 @@
 }
 
 /* iPad Air & iPad Pro Portrait Mode */
+@media (max-width: 992px) and (min-width: 820px) {
+  .dash-box{
+    max-width: 100% !important;
+  }
+  .service-details img{
+    left: 44px !important;
+  }
+
+
+}
 @media (max-width: 1024px) and (min-width: 768px) {
   .sidebar-container {
     transform: translateX(-100%);
@@ -196,14 +206,15 @@
     z-index: 99999;
   }
 }
-@media (max-width: 1366px) and (min-width: 1025px) {
+@media (max-width: 1366px) and (min-width: 1024px) {
   .sidebar-container {
-    /* You can keep it visible or toggleable */
-    transform: translateX(0); /* Show by default if desired */
+    transform: translateX(0);
+    max-width: 185px;
+    padding: 0px !important;
   }
 
-  .sidebar-toggle-btn {
-    display: none; /* Or show it if you want toggle always */
+ .sidebar-toggle-btn {
+   display: none;
   }
 }
 </style>
