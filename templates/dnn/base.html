@@ -1,7 +1,16 @@
 {% include "head.html" %}
-{% include "header.html" %}
+
+{% if is_mobile %}
+  {% include "mobile/header.html" %}
+{% else %}
+  {% include "header.html" %}
+{% endif %}
 {% load static %}
 {% block body %}
 
 {% endblock  %}
-{% include "footer.html" %}
+{% if is_mobile %}
+  {% include "mobile/footer.html" %}
+{% else %}
+  {% include "footer.html" %}
+{% endif %}
