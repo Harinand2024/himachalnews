@@ -969,13 +969,6 @@ img {
   width: 100%;
 }
 
-.brand-track {
-  display: flex;
-  gap: 20px;
-  animation: brandScroll 100s linear infinite;
-  width: max-content;
-  padding: 20px 0;
-}
 
 .brand-track.paused {
   animation-play-state: paused;

@@ -27,8 +27,8 @@ DEBUG = True
 
 # ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 # ALLOWED_HOSTS = ['dxbnewsnetwork.com','www.dxbnewsnetwork.com']
-# ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '192.168.29.16']
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '192.168.1.40']
+# ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '192.168.29.17']
 
 
 # Application definition
@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     'setting',
     'django_countries',
     'cities_light',
+    'django_user_agents',
     #'django_crontab',
     #'embed_video',
 ]
@@ -73,6 +74,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django_user_agents.middleware.UserAgentMiddleware',
 ]
 
 CACHES = {
@@ -97,6 +99,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'setting.context.setting_context',
+                'setting.context.cms_context',
             ],
         },
     },

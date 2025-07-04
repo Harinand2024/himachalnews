@@ -56,6 +56,7 @@ class subscriberAdmin(admin.ModelAdmin):
             'subscribe_date',
             'is_active',
             )
+    search_fields=('name', 'email')
 admin.site.register(SubscribeUser,subscriberAdmin)
 
 class bpAdmin(admin.ModelAdmin):

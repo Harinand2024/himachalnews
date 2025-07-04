@@ -30,6 +30,8 @@ from journalist.models import Journalist
 
 from PIL import ImageFile
 ImageFile.LOAD_TRUNCATED_IMAGES = True
+from django_user_agents.utils import get_user_agent
+
 
 # home-pahe---------
 def home(request):
@@ -38,12 +40,16 @@ def home(request):
     blogdata=NewsPost.objects.filter(schedule_date__lt=current_datetime,is_active=1,status='active').order_by('-id')[:10]
     mainnews=NewsPost.objects.filter(schedule_date__lt=current_datetime,status='active').order_by('order')[:4]
     events=NewsPost.objects.filter(schedule_date__lt=current_datetime,Event=1,status='active').order_by('-id')[:10]
+    past_events = NewsPost.objects.filter(Event=1,Eventend_date__lt=current_datetime,status='active').order_by('-Eventend_date')[:10]
+    upcoming_events = NewsPost.objects.filter(Event=1,Event_date__gt=current_datetime,status='active').order_by('Event_date')[:10]
+    ongoing_events = NewsPost.objects.filter(Event=1,Event_date__lte=current_datetime,Eventend_date__gte=current_datetime,status='active').order_by('Eventend_date')[:10]
     bp=BrandPartner.objects.filter(is_active=1).order_by('-id')[:30]
     articales=NewsPost.objects.filter(schedule_date__lt=current_datetime,articles=1,status='active').order_by('-id')[:12]
     headline=NewsPost.objects.filter(schedule_date__lt=current_datetime,Head_Lines=1,status='active').order_by('-id')[:4]
     trending=NewsPost.objects.filter(schedule_date__lt=current_datetime,trending=1,status='active').order_by('-id')[:6]
     brknews=NewsPost.objects.filter(BreakingNews=1,status='active').order_by('-id')[:4]
     user_news = NewsPost.objects.filter(schedule_date__lt=current_datetime, journalist_id__isnull=False, status='active').order_by('-id')[:10]
+    tags = Tag.objects.filter(is_active=1).order_by('-id')[:10]
     profiles = Journalist.objects.filter(status='active').exclude(registration_type='journalist').order_by('-id')[:6]
     Category = category.objects.filter(cat_status='active').order_by('order')[:12]
     grouped_postsdata = {}
@@ -57,6 +63,11 @@ def home(request):
     grouped_postsdata_items = list(grouped_postsdata.items())
     grouped_postsdata1 = dict(grouped_postsdata_items[:2])
     grouped_postsdata2 = dict(grouped_postsdata_items[2:])
+    
+    uae_voice = NewsPost.objects.filter(post_cat__order=23,post_cat__sub_cat__order=1,status='active')[:8]
+
+    user_agent = get_user_agent(request)
+    is_mobile = user_agent.is_mobile
     
     truet=VideoNews.objects.filter(is_active='active',video_type='reel',News_Category=75).order_by('-id')[:8]
     recipe=VideoNews.objects.filter(is_active='active',video_type='reel',News_Category=76).order_by('-id')[:8]
@@ -131,10 +142,21 @@ def home(request):
             'grouped_postsdata2': grouped_postsdata2,
             'usernews': user_news,
             'profiles': profiles,
+            'past_events': past_events,
+            'upcoming_events': upcoming_events,
+            'ongoing_events': ongoing_events,
+            'now': current_datetime,
+            'tags': tags,
+            'is_mobile': is_mobile,
+            'uae_voice': uae_voice,
         }
-    return render(request,'index.html',data)
-# News-details-page----------
+    if request.user_agent.is_mobile:
+        return render(request, 'mobile/index.html',data)
+    else:
+        return render(request,'index.html',data)
+    
 
+# News-details-page----------
 def newsdetails(request,slug):
     counter=NewsPost.objects.get(slug=slug)
     counter.viewcounter=counter.viewcounter + 1
@@ -179,6 +201,8 @@ def newsdetails(request,slug):
     Category=category.objects.filter(cat_status='active').order_by('order') [:12]
     slider=NewsPost.objects.filter().order_by('-id')[:5]
     latestnews=NewsPost.objects.all().order_by('-id')[:5]
+    user_agent = get_user_agent(request)
+    is_mobile = user_agent.is_mobile
     data={
             'indseo':seo,
             'Blogdetails':blogdetails,
@@ -200,6 +224,7 @@ def newsdetails(request,slug):
             'trendpost':trending,
             'bnews':brknews,
             'vidnews':podcast,
+            'is_mobile': is_mobile,
         }
     return render(request,'news-details.html',data)
     #return render(request, 'index.html')
@@ -225,6 +250,7 @@ def GetNewsPdf(request):
 
 # News-pdf--------
 # News-News-search--------
+from django.db.models import Q
 def find_post_by_title(request):
     seo='allnews'
     current_datetime = datetime.now()
@@ -261,11 +287,20 @@ def find_post_by_title(request):
     tophead=ad.objects.filter(ads_cat_id=topad.id, is_active=1).order_by('-id') [:1]
     popup=ad_category.objects.get(ads_cat_slug='popup')
     popupad=ad.objects.filter(ads_cat_id=popup.id, is_active=1).order_by('-id') [:1]
+    user_agent = get_user_agent(request)
+    is_mobile = user_agent.is_mobile
 # -------------end-ad-manage-meny--------------    
 
     title = request.GET.get('title')
     if title:
-        blogdata = NewsPost.objects.filter(post_title__contains=title,is_active=1,status='active')
+        blogdata = NewsPost.objects.filter(
+            Q(post_title__icontains=title) |
+            Q(post_des__icontains=title) |
+            Q(post_short_des__icontains=title),
+            is_active=1,
+            status='active'
+        )
+        
         if blogdata.exists():
             data={
                 'indseo':seo,
@@ -287,6 +322,7 @@ def find_post_by_title(request):
                 'bnews':brknews,
                 'vidnews':podcast,
                 'trendpost':trending,
+                'is_mobile': is_mobile,
                 }
             return render(request, 'all-news.html', data)
         else:
@@ -384,6 +420,8 @@ def AllNews(request,slug):
     
     slider=NewsPost.objects.filter().order_by('-id')[:5]
     latestnews=NewsPost.objects.all().order_by('-id')[:5]
+    user_agent = get_user_agent(request)
+    is_mobile = user_agent.is_mobile
     data={
             'indseo':seo,
             'BlogData':blogdata,
@@ -407,6 +445,7 @@ def AllNews(request,slug):
             'trendpost':trending,
             'bnews':brknews,
             'vidnews':podcast,
+            'is_mobile': is_mobile,
         }
    
     return render(request,'all-news.html',data)
@@ -470,6 +509,8 @@ def AllvideoNews(request,slug):
     
     slider=NewsPost.objects.filter().order_by('-id')[:5]
     latestnews=NewsPost.objects.all().order_by('-id')[:5]
+    user_agent = get_user_agent(request)
+    is_mobile = user_agent.is_mobile
     data={
             'indseo':seo,
             'BlogData':blogdata,
@@ -493,6 +534,7 @@ def AllvideoNews(request,slug):
             'trendpost':trending,
             'bnews':brknews,
             'vidnews':podcast,
+            'is_mobile': is_mobile,
         }
    
     return render(request,'all-video-news.html',data)
@@ -692,6 +734,8 @@ def videonewsdetails(request,slug):
     Category=category.objects.filter(cat_status='active').order_by('order') [:12]
     slider=NewsPost.objects.filter().order_by('-id')[:5]
     latestnews=NewsPost.objects.all().order_by('-id')[:5]
+    user_agent = get_user_agent(request)
+    is_mobile = user_agent.is_mobile
     data={
             'indseo':seo,
             'Vnews':viddetails,
@@ -712,6 +756,7 @@ def videonewsdetails(request,slug):
             'trendpost':trending,
             'bnews':brknews,
             'vidnews':podcast,
+            'is_mobile': is_mobile,
         }
     return render(request,'video-news-details.html',data)
     #return render(request, 'index.html')
@@ -776,6 +821,8 @@ def catdetails(request,catlink,slug):
     Category=category.objects.filter(cat_status='active').order_by('order') [:12]
     slider=NewsPost.objects.filter().order_by('-id')[:5]
     latestnews=NewsPost.objects.all().order_by('-id')[:5]
+    user_agent = get_user_agent(request)
+    is_mobile = user_agent.is_mobile
     data={ 
             'indseo':seo,
             'sslug':seoslug,
@@ -798,6 +845,7 @@ def catdetails(request,catlink,slug):
             'adtl':adtopleft,
             'adtr':adtopright,
             'bgad':festive,
+            'is_mobile': is_mobile,
         }
 
     return render(request,'category.html',data)
@@ -838,6 +886,8 @@ def Contactus(request):
     
     slider=NewsPost.objects.filter().order_by('-id')[:5]
     latestnews=NewsPost.objects.all().order_by('-id')[:5]
+    user_agent = get_user_agent(request)
+    is_mobile = user_agent.is_mobile
     data={
             'BlogData':blogdata,
             'mainnews':mainnews,
@@ -856,6 +906,7 @@ def Contactus(request):
             'trendpost':trending,
             'bnews':brknews,
             'vidnews':podcast,
+            'is_mobile': is_mobile,
         }
     return render(request,'contact.html',data)
 # cat-contact-page--end--------
@@ -1615,6 +1666,8 @@ def thanks(request):
     Category=category.objects.filter(cat_status='active').order_by('order') [:12]
     slider=NewsPost.objects.filter().order_by('-id')[:5]
     latestnews=NewsPost.objects.all().order_by('-id')[:5]
+    user_agent = get_user_agent(request)
+    is_mobile = user_agent.is_mobile
     data={
             'BlogData':blogdata,
             'Slider':slider,
@@ -1630,6 +1683,7 @@ def thanks(request):
             'headline':headline,
             'trendpost':trending,
             'bnews':brknews,
+            'is_mobile': is_mobile,
         }
    
     return render(request,'thanks.html',data)
@@ -1721,6 +1775,8 @@ def advertise(request):
     Category=category.objects.filter(cat_status='active').order_by('order') [:12]
     slider=NewsPost.objects.filter().order_by('-id')[:5]
     latestnews=NewsPost.objects.all().order_by('-id')[:5]
+    user_agent = get_user_agent(request)
+    is_mobile = user_agent.is_mobile
     data={
             'BlogData':blogdata,
             'Slider':slider,
@@ -1736,6 +1792,7 @@ def advertise(request):
             'headline':headline,
             'trendpost':trending,
             'bnews':brknews,
+            'is_mobile': is_mobile,
         }
    
     return render(request,'advertise-with-us.html',data)
@@ -1756,6 +1813,8 @@ def Adsinquiry(request):
 
     slider = NewsPost.objects.filter().order_by('-id')[:5]
     latestnews = NewsPost.objects.all().order_by('-id')[:5]
+    user_agent = get_user_agent(request)
+    is_mobile = user_agent.is_mobile
     data = {
             'indseo':seo,
             'BlogData': blogdata,
@@ -1764,6 +1823,7 @@ def Adsinquiry(request):
             'Blogcat': Category,
             'latnews': latestnews,
             'Articale': articales,
+            'is_mobile': is_mobile,
         }
 
     if request.method == 'POST':
@@ -1843,6 +1903,8 @@ def cms_detail(request, slug):
     Category=category.objects.filter(cat_status='active').order_by('order') [:12]
     slider=NewsPost.objects.filter().order_by('-id')[:5]
     latestnews=NewsPost.objects.all().order_by('-id')[:5]
+    user_agent = get_user_agent(request)
+    is_mobile = user_agent.is_mobile
     data={
             'BlogData':blogdata,
             'Slider':slider,
@@ -1859,6 +1921,7 @@ def cms_detail(request, slug):
             'trendpost':trending,
             'bnews':brknews,
             'page': page,
+            'is_mobile': is_mobile,
         }
 
     return render(request, 'cms_page.html', data)
@@ -1891,6 +1954,8 @@ def profiledxb(request, username ):
     category_list = category.objects.filter(cat_status='active').order_by('order')[:12]
     journalist_blogdata = NewsPost.objects.filter(journalist=profile_journalist, status='active').order_by('-id')[:6]
     journalist_podcast = VideoNews.objects.filter(journalist=profile_journalist, is_active='active').order_by('-id')[:6]
+    user_agent = get_user_agent(request)
+    is_mobile = user_agent.is_mobile
 
     child_profiles = None
     recommended_profiles = None
@@ -1927,6 +1992,7 @@ def profiledxb(request, username ):
         'child_profiles': child_profiles,
         'recommended_profiles': recommended_profiles,
         'journalist_podcast': journalist_podcast,
+        'is_mobile': is_mobile,
     }
 
     return render(request, "inn/profile.html", context)
@@ -1946,6 +2012,8 @@ def posts_by_tag(request, slug):
 
     all_video = VideoNews.objects.filter(tags=tag, is_active='active', schedule_date__lte=current_datetime).order_by('-schedule_date')[:10]
     video_page = Paginator(all_video, 8).get_page(request.GET.get('vpage'))
+    user_agent = get_user_agent(request)
+    is_mobile = user_agent.is_mobile
 
     categories = category.objects.filter(cat_status='active').order_by('order')[:12]
     articles = NewsPost.objects.filter(schedule_date__lte=current_datetime, articles=True, status='active').order_by('-id')[:12]
@@ -1958,6 +2026,7 @@ def posts_by_tag(request, slug):
         'video': video_page,
         'Blogcat': categories,
         'Articale': articles,
+        'is_mobile': is_mobile,
     }
     return render(request, 'posts_by_tag.html', context)
 
@@ -1978,6 +2047,8 @@ def voicesofuae(request):
 
     slider = NewsPost.objects.filter().order_by('-id')[:5]
     latestnews = NewsPost.objects.all().order_by('-id')[:5]
+    user_agent = get_user_agent(request)
+    is_mobile = user_agent.is_mobile
     data = {
             'indseo':seo,
             'BlogData': blogdata,
@@ -1986,6 +2057,7 @@ def voicesofuae(request):
             'Blogcat': Category,
             'latnews': latestnews,
             'Articale': articales,
+            'is_mobile': is_mobile,
         }
 
     if request.method == 'POST':
@@ -2029,3 +2101,10 @@ def voicesofuae(request):
                                                                                  
     return render(request, 'adsinquiry.html', data)
 
+def Settings(request):
+    user_agent = get_user_agent(request)
+    is_mobile = user_agent.is_mobile
+    data = {
+        'is_mobile': is_mobile,
+    }
+    return render(request, 'mobile/settings.html', data)
