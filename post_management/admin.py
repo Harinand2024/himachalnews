@@ -68,7 +68,9 @@ class Post_Admin(admin.ModelAdmin):
         'slug',
         'post_cat__subcat_name',
         'post_date',
+        'post_image',
         'tags__name'  # ✅ Use tags instead of post_tag
+        
     )
 
     list_filter = (

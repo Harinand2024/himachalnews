@@ -11,7 +11,7 @@
 }
 .vou-text{
     color: rgb(168 168 168 / 86%) !important;
-    font-size: 200px;
+    font-size: 160px;
     font-family: fantasy;
     font-style: normal;
     background-image: radial-gradient(#5d6e8a 1px, transparent 1px);
@@ -81,28 +81,101 @@
   @media (max-width: 1200px) {
   .vou-text{
     color: rgb(168 168 168 / 86%) !important;
-    font-size: 60px;
-    font-family: fantasy;
+    font-size: 40px;
+    font-family:Arial, Helvetica, sans-serif !important;
+    font-weight: bolder;
     font-style: normal;
     background-image: radial-gradient(#5d6e8a 1px, transparent 1px);
   background-size: 20px 20px;
   color: #fff;
 }
-
+.ad-image{
+  display: none;
+}
 }
 </style>
 
 <div class="bootstrap-new" style="background: #fff;">
 <div class="row m-3">
+  <div class="col-md-8 mt-3" >
 <h1 class="display-4 text-center vou-text">VOICES OF UAE</h1>
+<div>
+  <img src="{% static 'assets/images/Voices-Of-UAE.jpg' %}" alt="Voices of UAE" width="100%" class="ad-image">
+</div>
+  </div>
+    
+            <div class="col-12 col-md-4 mb-4">
+              <div>
+                <h3 class="text-center">Welcome! Let’s move forward.</h3>
+        <p class="lead py-2" style="text-align: justify;">Provide your information along with a high-resolution photo of yourself, submit your content and make the payment..that’s it!</p>
+              </div>
+              
+               {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-danger alert-dismissible fade show">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>{{ message }}</strong>
+            </div>
+            {% endfor %}
+            {% endif %}
+            {% if form.non_field_errors %}
+            <small class="text-danger">{{ form.non_field_errors.as_ul}}</small>
+            {% endif %}
+              <form method="POST" action="/voices-of-uae" enctype="multipart/form-data" class="bg-light p-4 rounded shadow">
+              {% csrf_token %}
+
+              <div class="mb-3">
+              <!-- <label for="profile_pic" class="form-label">Your Full Name</label> -->
+              <input type="text" name="fullname" id="fullname" class="form-control" required placeholder="Your Full Name">
+              </div>
+              <!-- Are you based in UAE? -->
+              <div class="mb-3">
+              <label for="interestedin" class="form-label">Article Submisison for : </label>
+              <select class="form-select form-control" id="interestedin" name="interestedin" required>
+              <option value="" selected disabled>Select An Option</option>
+              <option value="vou">Voice Of UAE</option>
+              <option value="others">Others</option>
+              </select>
+              </div>
+
+              <!-- Profile Picture Upload -->
+              <div class="mb-3">
+              <!-- <label for="profile_pic" class="form-label">Upload your profile picture (JPG or PNG, Max 5MB)</label> -->
+              <input type="file" name="profile_picture" id="profile_pic" accept=".jpg,.jpeg,.png" class="form-control" required>
+              <small style="
+    font-size: 10px;
+">Upload your profile picture (JPG or PNG, Max 5MB)</small>
+              </div>
+
+              <!-- Biography -->
+              <div class="mb-3">
+              <!-- <label for="bio" class="form-label">Your Biography</label> -->
+              <textarea name="biography" id="bio" rows="5" class="form-control" placeholder="Tell us about your journey, achievements, profession, or what makes your voice unique" required></textarea>
+              </div>
+
+              <!-- Contact Email -->
+              <div class="mb-3">
+              <!-- <label for="email" class="form-label">Contact Email (Verification Only)</label> -->
+              <input type="email" name="contact_email" id="email" class="form-control" placeholder="Contact Email (Verification Only)" required>
+              </div>
+
+              <!-- Contact Number -->
+              <div class="mb-3">
+              <!-- <label for="phone" class="form-label">Contact Number (Verification Only)</label> -->
+              <input type="tel" name="contact_number" id="phone" class="form-control" pattern="[0-9+ -]{7,15}" placeholder="Contact Number (Verification Only)" required >
+              </div>
+
+              <button type="submit" class="btn btn-primary w-100">Submit Profile</button>
+              </form>
+            </div>
 
    <div class="container blue-pattern">
   <ul class="control" id="custom-control">
-    <li class="prev"><i class="fas fa-angle-left fa-2x"></i></li>
-    <li class="next"><i class="fas fa-angle-right fa-2x"></i></li>
+    <!-- <li class="prev"><i class="fas fa-angle-left fa-2x"></i></li>
+    <li class="next"><i class="fas fa-angle-right fa-2x"></i></li> -->
   </ul>
 
-  <div class="my-slider">
+  <div class="my-slider mt-2">
     {% for bd in BlogData %}
     <a href="/{{ bd.slug }}" class="text-body" target="_blank">
       <img src="{{ bd.post_image.url }}" alt="{{ bd.post_title}}">
@@ -116,14 +189,13 @@
 
     <div class="container blue-pattern">
         
-        <h3>Celebrating Achievers Across Fields</h3>
-        <p class="lead mb-5">The campaign aims to highlight and celebrate the inspiring achievements of individuals from diverse fields and backgrounds in the UAE.</p>
+      
     <div class="row">
         <div class="col-md-6 col-12">
           <div class="mb-4 rounded border p-3" style="min-height:306px;">
-        <p><span class="h2">Voices of UAE</span> is a special initiative by DXB News Network, inviting people living in the UAE to share real stories that matter — your struggles, achievements, turning points, or lessons that can inspire others. You don’t need to be a writer or public figure. If your story has honesty and impact, we want to hear it — in any language, with just a clear photo and your words.
+        <p class="text-white text-justify"><span class="h2">Voices of UAE</span> is a special initiative by DXB News Network, inviting people living in the UAE to share real stories that matter — your struggles, achievements, turning points, or lessons that can inspire others. You don’t need to be a writer or public figure. If your story has honesty and impact, we want to hear it — in any language, with just a clear photo and your words.
         </p>
-        <p>
+        <p class="text-white  text-justify">
           To submit, simply fill out our online form and pay a refundable AED 220 registration fee. If your story is not selected, you’ll get a full refund within 7 days. If approved and published, the fee becomes non-refundable. Stories must be respectful, non-promotional, and follow UAE media ethics. This is your chance to be featured on a trusted platform. Your voice can move someone — let it be heard.
         </p>
         
@@ -133,8 +205,8 @@
       <div class=" mb-4 rounded border  p-3" style="min-height:306px;">
     <!-- Registration Section -->
     
-    <p class="h2">A non-refundable registration fee of AED 220 will be required, payable to Markazzia Solutions LLC-FZ.</p>
-    <p class="h4">Participants must provide a deposit slip as proof of payment along with their submissions.</p>
+    <p class="h2 text-justify" >A non-refundable registration fee of AED 220 will be required, payable to Markazzia Solutions LLC-FZ.</p>
+    <p class="h4 text-justify">Participants must provide a deposit slip as proof of payment along with their submissions.</p>
 </div>
     </div>
     </div>
@@ -276,63 +348,7 @@
 </div>
 
             </div>
-            <div class="col-12 col-md-6 mb-4">
-              <h3 class="h3 mb-4 text-center">Submit Your Profile</h3>
-               {% if messages %}
-            {% for message in messages %}
-            <div class="alert alert-danger alert-dismissible fade show">
-                <button type="button" class="close" data-dismiss="alert">&times;</button>
-                <strong>{{ message }}</strong>
-            </div>
-            {% endfor %}
-            {% endif %}
-            {% if form.non_field_errors %}
-            <small class="text-danger">{{ form.non_field_errors.as_ul}}</small>
-            {% endif %}
-              <form method="POST" action="/voices-of-uae" enctype="multipart/form-data" class="bg-light p-4 rounded shadow">
-              {% csrf_token %}
-
-              <div class="mb-3">
-              <label for="profile_pic" class="form-label">Your Full Name</label>
-              <input type="text" name="fullname" id="fullname" class="form-control" required>
-              </div>
-              <!-- Are you based in UAE? -->
-              <div class="mb-3">
-              <label for="interestedin" class="form-label">I Want Join </label>
-              <select class="form-select" id="interestedin" name="interestedin" required>
-              <option value="" selected disabled>Select an option</option>
-              <option value="vou">Voice Of UAE</option>
-              <option value="others">Others</option>
-              </select>
-              </div>
-
-              <!-- Profile Picture Upload -->
-              <div class="mb-3">
-              <label for="profile_pic" class="form-label">Upload your profile picture (JPG or PNG, Max 5MB)</label>
-              <input type="file" name="profile_picture" id="profile_pic" accept=".jpg,.jpeg,.png" class="form-control" required>
-              </div>
-
-              <!-- Biography -->
-              <div class="mb-3">
-              <label for="bio" class="form-label">Your Biography</label>
-              <textarea name="biography" id="bio" rows="5" class="form-control" placeholder="Tell us about your journey, achievements, profession, or what makes your voice unique" required></textarea>
-              </div>
-
-              <!-- Contact Email -->
-              <div class="mb-3">
-              <label for="email" class="form-label">Contact Email (Verification Only)</label>
-              <input type="email" name="contact_email" id="email" class="form-control" required>
-              </div>
-
-              <!-- Contact Number -->
-              <div class="mb-3">
-              <label for="phone" class="form-label">Contact Number (Verification Only)</label>
-              <input type="tel" name="contact_number" id="phone" class="form-control" pattern="[0-9+ -]{7,15}" required>
-              </div>
-
-              <button type="submit" class="btn btn-primary w-100">Submit Profile</button>
-              </form>
-            </div>
+            
         </div>
 
         

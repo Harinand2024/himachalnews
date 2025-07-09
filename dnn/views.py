@@ -227,7 +227,7 @@ def newsdetails(request,slug):
             'is_mobile': is_mobile,
         }
     return render(request,'news-details.html',data)
-    #return render(request, 'index.html')
+#return render(request, 'index.html')
 # News-details-page--end--------
 # News-pdf--------
 def GetNewsPdf(request):

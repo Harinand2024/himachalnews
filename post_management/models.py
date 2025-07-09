@@ -11,6 +11,9 @@ from django.contrib.auth.models import User
 from journalist.models import Journalist
 from autoslug import AutoSlugField
 
+# from io import BytesIO
+# from django.core.files.base import ContentFile
+# from PIL import Image
 
 class category(models.Model):
     cat_name=models.CharField(max_length=255,unique=True,null=True,default=None)
@@ -51,7 +54,8 @@ class Tag(models.Model):
 
     def get_absolute_url(self):
         return reverse('posts_by_tag', args=[self.slug])
-    
+      
+
 class NewsPost(models.Model):
     post_cat=models.ForeignKey("sub_category", verbose_name="Select Cetegory",null=True,default=None,on_delete=models.CASCADE)
     post_title=models.CharField(max_length=150, verbose_name="News Head Line",null=True,default=None)
@@ -118,10 +122,8 @@ class NewsPost(models.Model):
     
     def __str__(self):
         return self.post_title
-    
     def get_absolute_url(self):
          return reverse('newsdetails', args=[self.slug])
-        
 
 class VideoNews(models.Model):
     News_Category =models.ForeignKey("sub_category", verbose_name="Select Category",null=True,default=None,on_delete=models.CASCADE)
