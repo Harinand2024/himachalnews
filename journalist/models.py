@@ -122,6 +122,8 @@ class Journalist(models.Model):
 class Gallery(models.Model):
     journalist = models.ForeignKey('Journalist', on_delete=models.CASCADE, related_name="galleries")
     image = models.ImageField(upload_to="journalist", null=True, blank=True)
+    title = models.CharField(max_length=255, null=True, blank=True)
+    caption = models.TextField(null=True, blank=True)
     
     STATUS_CHOICES = (
         ('active', 'Active'),
@@ -132,4 +134,4 @@ class Gallery(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return f"Gallery {self.id}"
+        return f"Post by {self.journalist} on {self.post_at.strftime('%Y-%m-%d %H:%M')}"

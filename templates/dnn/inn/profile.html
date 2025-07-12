@@ -52,10 +52,15 @@
                 {% for img in galleries %}
                 {% if img.image %}
                 <div class="col-md-3 col-6">
-                    <a href="#">
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#imageModal" data-img="{{ img.image.url }}"
+                        data-title="{{ img.title }}" data-caption="{{ img.caption }}"
+                        data-profile="{{ img.journalist.profile_picture.url }}"
+                        data-name="{{ img.journalist.first_name }} {{ img.journalist.last_name }}"
+                        data-time="{{ img.updated_at|timesince }}">
                         <img src="{{ img.image.url }}" class="img-fluid rounded-3 shadow-sm hover-zoom"
                             alt="Gallery Image">
                     </a>
+
                 </div>
                 {% endif %}
                 {% endfor %}
@@ -116,11 +121,15 @@
                         </a>
                     </div>
                     <div class="col-9">
-                        <h6 class="mb-1"><a href="/{{ post.slug }}" class="fw-semibold text-decoration-none" target="_blank">{{ post.post_title|truncatechars:90 }}</a></h6>
+                        <h6 class="mb-1"><a href="/{{ post.slug }}" class="fw-semibold text-decoration-none"
+                                target="_blank">{{ post.post_title|truncatechars:90 }}</a></h6>
                         <div class="d-flex ">
-                            <small style="font-size: 10px;" class="text-secondary mr-4">{{ post.schedule_date|date }} | {{ post.schedule_date|time}}</small>
-                            <small style="font-size: 10px;" class="text-secondary mr-4"><i class="far fa-eye mr-2"></i>{{post.post_status|add:post.viewcounter}}</small>
-                            <small style="font-size: 10px;" class="text-secondary "></i>{% include 'share.html' with posts=post %}</small>
+                            <small style="font-size: 10px;" class="text-secondary mr-4">{{ post.schedule_date|date }} |
+                                {{ post.schedule_date|time}}</small>
+                            <small style="font-size: 10px;" class="text-secondary mr-4"><i
+                                    class="far fa-eye mr-2"></i>{{post.post_status|add:post.viewcounter}}</small>
+                            <small style="font-size: 10px;" class="text-secondary "></i>
+                                {% include 'share.html' with posts=post %}</small>
                         </div>
                     </div>
                 </div>
@@ -142,12 +151,13 @@
                     </div>
                     <div class="col-9">
                         <h6 class="mb-1">
-                            <a href="/video/{{ post.slug }}" class="fw-semibold text-decoration-none" target="_blank">{{
-                                post.video_title|truncatechars:90 }}</a>
+                            <a href="/video/{{ post.slug }}" class="fw-semibold text-decoration-none" target="_blank">
+                                {{ post.video_title|truncatechars:90 }}</a>
                         </h6>
                         <p class="text-muted mb-1 small">{{ post.post_short_des|truncatechars:120 }}</p>
                         <small class="text-secondary mr-4">{{ post.schedule_date|date }} | {{ post.schedule_date|time }}</small>
-                        <small class="text-secondary"><i class="far fa-eye mr-2"></i>{{ post.counter|add:post.viewcounter }}</small>
+                        <small class="text-secondary"><i class="far fa-eye mr-2"></i>
+                            {{ post.counter|add:post.viewcounter }}</small>
                     </div>
                 </div>
                 {% endfor %}
@@ -166,11 +176,15 @@
                         </a>
                     </div>
                     <div class="col-9">
-                        <h6 class="mb-1"><a href="/{{ post.slug }}" class="fw-semibold text-decoration-none" target="_blank">{{ post.post_title|truncatechars:90 }}</a></h6>
+                        <h6 class="mb-1"><a href="/{{ post.slug }}" class="fw-semibold text-decoration-none"
+                                target="_blank">{{ post.post_title|truncatechars:90 }}</a></h6>
                         <div class="d-flex ">
-                            <small style="font-size: 10px;" class="text-secondary mr-4">{{ post.schedule_date|date }} | {{ post.schedule_date|time}}</small>
-                            <small style="font-size: 10px;" class="text-secondary mr-4"><i class="far fa-eye mr-2"></i>{{post.post_status|add:post.viewcounter}}</small>
-                            <small style="font-size: 10px;" class="text-secondary "></i>{% include 'share.html' with posts=post %}</small>
+                            <small style="font-size: 10px;" class="text-secondary mr-4">{{ post.schedule_date|date }} |
+                                {{ post.schedule_date|time}}</small>
+                            <small style="font-size: 10px;" class="text-secondary mr-4"><i
+                                    class="far fa-eye mr-2"></i>{{post.post_status|add:post.viewcounter}}</small>
+                            <small style="font-size: 10px;" class="text-secondary "></i>
+                                {% include 'share.html' with posts=post %}</small>
                         </div>
                     </div>
                 </div>
@@ -179,6 +193,64 @@
         </div>
     </div>
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content rounded-4">
+
+            <!-- Dynamic Header -->
+            <div class="modal-header">
+                <div class="d-flex align-items-center gap-2">
+                    <div class="profile-pic">
+                        <img id="modalProfilePic" class="rounded-circle" width="40" height="40" />
+                    </div>
+                    <div>
+                        <strong id="modalJournalistName"></strong><br>
+                        <small class="text-muted" id="modalTimeAgo"></small>
+                    </div>
+                </div>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <!-- Dynamic Title & Caption -->
+            <div class="mt-3 px-3">
+                <div class="post-title fw-bold" id="modalTitle"></div>
+                <div class="post-body" id="modalCaption"></div>
+            </div>
+
+            <!-- Image -->
+            <div class="modal-body text-center">
+                <img id="modalImage" src="" class="img-fluid mb-3 rounded-3" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const imageModal = document.getElementById('imageModal');
+
+    imageModal.addEventListener('show.bs.modal', function (event) {
+        const trigger = event.relatedTarget;
+
+        // Get all data attributes
+        const imageUrl = trigger.getAttribute('data-img');
+        const title = trigger.getAttribute('data-title');
+        const caption = trigger.getAttribute('data-caption');
+        const profile = trigger.getAttribute('data-profile');
+        const name = trigger.getAttribute('data-name');
+        const time = trigger.getAttribute('data-time');
+
+        // Populate modal elements
+        imageModal.querySelector('#modalImage').src = imageUrl;
+        imageModal.querySelector('#modalTitle').textContent = title || '';
+        imageModal.querySelector('#modalCaption').textContent = caption || '';
+        imageModal.querySelector('#modalProfilePic').src = profile || '';
+        imageModal.querySelector('#modalJournalistName').textContent = name || '';
+        imageModal.querySelector('#modalTimeAgo').textContent = time + ' · 🌐';
+    });
+</script>
+
 
 <style>
     .scroll-box {

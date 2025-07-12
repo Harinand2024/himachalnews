@@ -30,7 +30,8 @@ urlpatterns = [
     path('edit-post/<int:post_id>', post_management.Journalist_Edit_News_Post, name='edit-post'),
     path('journalist-update-post', post_management.JournalistUpdatePost, name="journalist-update-post"),
     path('gallery-post/', post_management.GalleryPost, name='gallery_post'),
-    path('delete-gallery/<int:pk>/', post_management.delete_gallery_image, name='delete_gallery'),
+    path('delete-gallery/<int:pk>/', post_management.delete_gallery_image, name='delete-gallery'),
+    path('edit-gallery/<int:pk>/', post_management.edit_gallery_image, name='edit-gallery'),
 
     path('add-artist', post_management.AddArtist, name="add_artist"),
 

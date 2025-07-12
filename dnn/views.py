@@ -26,7 +26,7 @@ import random
 from django.core.cache import cache
 from django.views.decorators.csrf import csrf_exempt
 from itertools import islice
-from journalist.models import Journalist
+from journalist.models import Journalist, Gallery
 
 from PIL import ImageFile
 ImageFile.LOAD_TRUNCATED_IMAGES = True
@@ -109,7 +109,11 @@ def home(request):
     
     slider=NewsPost.objects.filter().order_by('-id')[:5]
     latestnews=NewsPost.objects.all().order_by('-id')[:5]
+    active_galleries = Gallery.objects.filter(status='active')
+    active_galleries = Gallery.objects.filter(status='active')[:20]
+    
     data={
+            "active_galleries" : active_galleries,
             'indseo':seo,
             'LatestNews':blogdata,
             'mainnews':mainnews,

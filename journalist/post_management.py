@@ -20,15 +20,10 @@ import base64
 from django.core.files.base import ContentFile
 import logging
 logger = logging.getLogger(__name__)
-import base64
-from django.core.files.base import ContentFile
-from django.http import JsonResponse
-
-
-
-
+from .models import Gallery
 from django.db.models import Count
-from django.http import JsonResponse
+from django.http import HttpResponseForbidden
+
 
 def tag_autocomplete(request):
     if request.headers.get('x-requested-with') == 'XMLHttpRequest':
@@ -453,60 +448,81 @@ def GalleryPost(request):
     journalist = get_object_or_404(Journalist, id=journalist_id)
 
     if request.method == "POST":
-        images_data = request.POST.getlist('images[]')
+        title = request.POST.get('title', '').strip()
+        caption = request.POST.get('caption', '').strip()
+        cropped_image_data = request.POST.get('cropped_image_data')
+
+        # Check post limit
         current_count = journalist.galleries.filter(status='active').count()
         post_limit = journalist.gallery_post_limit
-        slots_left = post_limit - current_count
+        if current_count >= post_limit:
+            messages.error(request, f"You have reached your post limit of {post_limit}.")
+            return redirect('gallery_post')
 
-        for img_data in images_data:
-            if not img_data.strip():
-                continue
-            if slots_left <= 0:
-                break
-            try:
-                format, imgstr = img_data.split(';base64,')
-                ext = format.split('/')[-1]
-                image_file = ContentFile(base64.b64decode(imgstr), name=f'gallery_{journalist.id}_{current_count+1}.{ext}')
-                Gallery.objects.create(journalist=journalist, image=image_file, status='active')
-                slots_left -= 1
-                current_count += 1
-            except Exception as e:
-                messages.error(request, f"Failed to save one image: {e}")
-                continue
+        if not cropped_image_data:
+            messages.error(request, "Image is required.")
+            return redirect('gallery_post')
 
-        messages.success(request, "Gallery updated successfully.")
+
+        # Decode base64 image
+        format, imgstr = cropped_image_data.split(';base64,')
+        ext = format.split('/')[-1]
+        image_file = ContentFile(base64.b64decode(imgstr), name=f'gallery_{journalist.id}_{current_count + 1}.{ext}')
+
+        # Save the Gallery post
+        Gallery.objects.create(
+            journalist=journalist,
+            title=title,
+            caption=caption,
+            image=image_file,
+            status='active'
+        )
+        messages.success(request, "Post created successfully.")
         return redirect('gallery_post')
 
+    # GET request
     gallery_post_limit = journalist.gallery_post_limit
     active_gallery_count = journalist.galleries.filter(status='active').count()
     active_galleries = journalist.galleries.filter(status='active')
     remaining_slots = range(gallery_post_limit - active_gallery_count)
 
-    return render(request, "inn/Journalist_gallery_post.html", {
+    context = {
         "journalist": journalist,
         "remaining_slots": remaining_slots,
-        'active_galleries': active_galleries,
-    })
+        "active_galleries": active_galleries,
+    }
 
-from django.http import JsonResponse
-from .models import Gallery
+    return render(request, "inn/Journalist_gallery_post.html", context)
+
 
 def delete_gallery_image(request, pk):
+    journalist_id = request.session.get('journalist_id')
+    if not journalist_id:
+        return redirect('sign-in')  # Force login first
+
+    try:
+        gallery = Gallery.objects.get(pk=pk, journalist_id=journalist_id)
+        gallery.status = 'inactive'
+        gallery.save()
+        return redirect(request.META.get('HTTP_REFERER', '/'))
+    except Gallery.DoesNotExist:
+        return HttpResponseForbidden("You are not allowed to delete this image.")
+
+
+def edit_gallery_image(request, pk):
+    journalist_id = request.session.get('journalist_id')
+    if not journalist_id:
+        return redirect('sign-in')
+
+    gallery = get_object_or_404(Gallery, pk=pk, journalist_id=journalist_id)
+
     if request.method == 'POST':
-        journalist_id = request.session.get('journalist_id')
-        if not journalist_id:
-            return JsonResponse({'error': 'Unauthorized'}, status=403)
+        gallery.title = request.POST.get('title', '').strip()
+        gallery.caption = request.POST.get('caption', '').strip()
+        gallery.save()
+        return redirect(request.META.get('HTTP_REFERER', '/'))
 
-        try:
-            gallery = Gallery.objects.get(pk=pk, journalist_id=journalist_id)
-            gallery.status = 'inactive'
-            gallery.save()
-            return JsonResponse({'success': True})
-        except Gallery.DoesNotExist:
-            return JsonResponse({'error': 'Not found'}, status=404)
-
-    return JsonResponse({'error': 'Invalid request'}, status=400)
-
+    return redirect('dashboard') 
 
 
 def AddArtist(request):

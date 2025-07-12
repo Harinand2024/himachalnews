@@ -105,5 +105,5 @@ admin.site.register(Equipment, EquipmentAdimn)
 
 class GalleryAdmin(admin.ModelAdmin):
     list_display = ('journalist', 'status', 'post_at')
-    search_fields = ['journalist__username', 'status', 'journalist__email']
+    search_fields = ['journalist__username', 'status', 'journalist__email', 'title', 'caption']
 admin.site.register(Gallery, GalleryAdmin)

@@ -1,0 +1,20 @@
+update 11/02/2025
+
+
+dnn/inn
+Journalist_gallery_post.html
+Journalist_menu.html
+profile.html
+
+dnn
+news2_right_side.html
+
+
+static\assets\dnn2\index.css
+
+
+journalist app
+post_management.py
+urls.py
+models.py
+admin.py

@@ -74,6 +74,7 @@
   0% {
     transform: translateX(0%);
   }
+
   100% {
     transform: translateX(-100%);
   }
@@ -144,12 +145,15 @@
   color: #333;
   text-transform: uppercase;
 }
+
 .overlay a {
   text-decoration: none;
 }
+
 .overlay a:hover {
   text-decoration: underline;
 }
+
 /* Thumbnails */
 .thumb-swiper,
 .trending-thumb-swiper {
@@ -221,18 +225,22 @@
 img {
   object-fit: cover;
 }
+
 /* UAE News Section Start */
 .cust-pl-0 {
   padding-left: 0;
 }
+
 .cust-pr-0 {
   padding-right: 0;
 }
+
 .uaenews-bg {
   background: #f3f6e0;
   padding: 20px 20px;
   border-radius: 12px;
 }
+
 .spotlite-bg {
   padding: 20px 20px;
   border-radius: 12px;
@@ -347,13 +355,16 @@ img {
   transition: all 0.5s ease;
   transform: scale(1);
 }
+
 .news-card img:hover {
   transform: scale(1.05);
 }
+
 .news-item {
   padding: 10px;
   border-radius: 6px;
 }
+
 .news-item img {
   width: 180px;
   height: 60px;
@@ -361,21 +372,26 @@ img {
   transition: all 0.5s ease;
   transform: scale(1);
 }
+
 .news-item img:hover {
   transform: scale(1.05);
 }
+
 .news-content {
   padding: 16px;
   text-align: left;
 }
+
 .news-content a {
   text-decoration: none;
-  color: #333 ;
+  color: #333;
   cursor: pointer;
 }
+
 .news-content a:hover {
   color: #f3342a !important;
 }
+
 .news-content h3 {
   font-size: 18px;
   margin: 10px 0;
@@ -390,11 +406,13 @@ img {
   height: 114px;
   overflow: hidden;
 }
+
 .featured-news {
   padding: 10px;
   border-radius: 6px;
   color: #333;
 }
+
 .meta {
   font-size: 11px;
   color: gray;
@@ -402,6 +420,7 @@ img {
   gap: 10px;
   margin-top: 10px;
 }
+
 .share-icon {
   position: absolute;
   top: 0;
@@ -428,22 +447,27 @@ img {
   font-weight: bold;
   text-decoration: none;
 }
+
 .uaenews-list-section a {
   text-decoration: none;
   cursor: pointer !important;
   /* color: #333 !important; */
 }
+
 .uaenews-list-section a:hover {
   color: #c02228 !important;
 }
+
 .uaenews-list-section h6 {
   font-size: 14px;
   font-weight: 600;
   color: #333;
 }
+
 .uaenews-list-section small {
   color: #6c757d;
 }
+
 /* Articale Css Start */
 .heading-text {
   text-align: left;
@@ -451,13 +475,16 @@ img {
   font-weight: bold;
   text-transform: uppercase;
 }
+
 .view-all {
   text-align: right;
 }
+
 .view-all:hover {
   background: none;
   color: #356dee;
 }
+
 .slider-wrapper {
   overflow: hidden;
   width: 100%;
@@ -572,9 +599,11 @@ img {
 .article-card {
   margin: auto;
 }
+
 .article-card a {
   text-decoration: none;
 }
+
 .image-section {
   position: relative;
 }
@@ -647,13 +676,16 @@ img {
   height: 37px;
   overflow: hidden;
 }
+
 .article-heading a {
   text-decoration: none;
 }
+
 .article-heading a:hover {
   text-decoration: none;
   color: #c02228;
 }
+
 .article-text {
   font-size: 16px;
   color: #444;
@@ -667,6 +699,7 @@ img {
   text-transform: uppercase;
   margin: 0px;
 }
+
 .article-slider-wrapper {
   overflow: hidden;
   width: 100%;
@@ -700,9 +733,11 @@ img {
   text-align: center;
   clip-path: polygon(20% 0, 100% 0, 100% 100%, 0% 100%);
 }
+
 .article-content a {
   text-decoration: none;
 }
+
 .article-content h3 {
   margin: 0 0 10px;
   font-weight: bold;
@@ -739,6 +774,7 @@ img {
   cursor: pointer;
   overflow: hidden;
 }
+
 .article-thumb-item .caption {
   position: absolute;
   bottom: 99px;
@@ -773,15 +809,19 @@ img {
 .article-card {
   margin-bottom: 20px;
 }
+
 /* news2_left css start */
 .modal-backdrop {
   z-index: 999 !important;
 }
+
 .sticky-sidebar {
   position: sticky;
   top: 50px;
-  z-index: 1000; /* Lower than modal z-index */
+  z-index: 1000;
+  /* Lower than modal z-index */
 }
+
 .custom-tab-widget {
   width: 360px;
 }
@@ -887,6 +927,7 @@ img {
   position: relative;
   padding: 20px 0;
 }
+
 .video-section h2 {
   font-size: 28px;
   color: #fff;
@@ -909,7 +950,8 @@ img {
 
 .video-wrapper {
   position: relative;
-  padding-bottom: 56.25%; /* 16:9 ratio */
+  padding-bottom: 56.25%;
+  /* 16:9 ratio */
   height: 0;
   overflow: hidden;
 }
@@ -1000,6 +1042,7 @@ img {
   0% {
     transform: translateX(0);
   }
+
   100% {
     transform: translateX(-50%);
   }
@@ -1046,13 +1089,15 @@ img {
 }
 
 .scroll-up-button:hover {
-  background-color: #e53028; /* Slightly darker on hover */
+  background-color: #e53028;
+  /* Slightly darker on hover */
 }
 
 .scroll-up-button .arrow {
   font-size: 24px;
   color: white;
-  transform: rotate(180deg); /* Pointing up */
+  transform: rotate(180deg);
+  /* Pointing up */
 }
 
 .footer {
@@ -1085,7 +1130,8 @@ a.text-light:hover {
 
 .singup-content {
   position: relative;
-  z-index: 1; /* Content appears above the video */
+  z-index: 1;
+  /* Content appears above the video */
   display: flex;
 }
 
@@ -1162,6 +1208,7 @@ a.text-light:hover {
 
 /* Responsive - Tablets */
 @media screen and (max-width: 1024px) {
+
   /* Top News Banner */
   .cust-pm {
     margin-top: 0px;
@@ -1171,6 +1218,7 @@ a.text-light:hover {
   .trending-thumb-swiper .swiper-slide {
     width: 163px !important;
   }
+
   /* UAE News Section Start */
   .top-menu {
     flex-direction: column;
@@ -1186,12 +1234,15 @@ a.text-light:hover {
     flex-wrap: wrap;
     gap: 10px;
   }
+
   .cust-pl-0 {
     padding: 20px 0px;
   }
+
   .cust-pr-0 {
     padding: 0;
   }
+
   .news-content p {
     height: 68px;
   }
@@ -1202,9 +1253,11 @@ a.text-light:hover {
   .brand-logo {
     width: 125px;
   }
+
   .brand-logo img {
     max-height: 125px;
   }
+
   /* Top News Banner */
   .cust-pm {
     margin-top: 0px;
@@ -1233,6 +1286,7 @@ a.text-light:hover {
   .cust-pl-0 {
     padding: 20px 0px;
   }
+
   .cust-pr-0 {
     padding: 0;
   }
@@ -1241,6 +1295,7 @@ a.text-light:hover {
   .heading-text {
     text-align: left;
   }
+
   .view-all {
     text-align: right;
   }
@@ -1260,28 +1315,36 @@ a.text-light:hover {
   .article-text {
     font-size: 15px;
   }
+
   #mainImage {
     height: 272px !important;
   }
+
   .dxb-article .main-banner .content {
     height: 100%;
   }
+
   .dxb-article .main-banner .content p {
     text-align: left;
   }
+
   .dxb-article .thumb .caption {
     display: none;
   }
+
   /* video css start */
   .video-section h2 {
     text-align: center;
   }
+
   .event-container {
     max-width: 700px !important;
   }
+
   .custom-tab-widget {
     width: 100% !important;
   }
+
   ol,
   ul {
     padding-left: 0;
@@ -1289,6 +1352,7 @@ a.text-light:hover {
 }
 
 @media screen and (max-width: 480px) {
+
   /* UAE News Section Start */
   .main-label {
     font-size: 16px;
@@ -1311,9 +1375,11 @@ a.text-light:hover {
   .top-menu {
     padding: 10px;
   }
+
   .heading-text {
     text-align: center;
   }
+
   .view-all {
     text-align: center;
   }
@@ -1408,6 +1474,7 @@ a.text-light:hover {
     box-shadow: 0 0 5px #ff0057, 0 0 10px #ff0057, 0 0 15px #ff0057;
     transform: scale(1);
   }
+
   100% {
     box-shadow: 0 0 10px #ffbd00, 0 0 20px #ffbd00, 0 0 25px #ffbd00;
     transform: scale(0.8);
@@ -1418,6 +1485,7 @@ a.text-light:hover {
   background: linear-gradient(45deg, #ffbd00, #ff0057);
   transform: scale(1.1);
 }
+
 .dxv-overlay {
   position: absolute;
   bottom: 90px;
@@ -1462,9 +1530,7 @@ a.text-light:hover {
   width: 100% !important;
 }
 
-.select2-container--default
-  .select2-selection--single
-  .select2-selection__rendered {
+.select2-container--default .select2-selection--single .select2-selection__rendered {
   line-height: 36px !important;
   padding-left: 8px;
   font-size: 14px !important;
@@ -1734,12 +1800,15 @@ label {
   .modal-content {
     max-width: 340px;
   }
+
   .nav-border {
     margin: 0px !important;
   }
+
   .sticky-nav {
     padding-top: 18px !important;
   }
+
   .header i {
     font-size: 22px !important;
   }
@@ -1747,33 +1816,41 @@ label {
   .header a {
     font-size: 16px !important;
   }
+
   .header p {
     font-size: 12px;
     font-weight: normal;
   }
+
   .calender {
     padding: 0px !important;
     margin-left: 9px;
   }
+
   .logo {
     margin: 0px -6px !important;
   }
+
   .top_search_section {
     margin-top: 0px !important;
     justify-content: center !important;
     left: 0px !important;
   }
+
   .top_search_section li {
     width: 50% !important;
     text-align: right !important;
     margin-bottom: 20px !important;
   }
+
   .flash-button {
     width: 194px !important;
   }
+
   .cust-pl-0 {
     padding-top: 0px !important;
   }
+
   .article-content {
     padding: 40px 30px 0px 100px !important;
   }
@@ -1781,6 +1858,7 @@ label {
   .dxv-overlay {
     background: rgba(255, 255, 255, 0.85) !important;
   }
+
   .modal-content {
     max-width: 340px;
   }
@@ -1794,30 +1872,38 @@ label {
     height: 44px;
     overflow: hidden;
   }
+
   .sticky-sidebar {
     z-index: 950 !important;
   }
+
   .modal-backdrop {
     z-index: 949 !important;
   }
+
   .row-p-0 {
     padding: 0px !important;
   }
+
   .items_background {
     border-radius: 6px !important;
   }
+
   .cust-pl-0 {
     margin: 0px !important;
   }
+
   .top-menu .menu-right {
     flex-direction: initial;
     align-items: center;
     text-align: center;
     cursor: pointer;
   }
+
   .form-wrapper {
     padding: 12px !important;
   }
+
   .video-background {
     position: fixed;
     top: 0;
@@ -1833,9 +1919,11 @@ label {
   .navbar {
     padding: 10px !important;
   }
+
   .nav-border {
     margin: 0px !important;
   }
+
   .sticky-nav {
     padding-top: 18px !important;
   }
@@ -1843,11 +1931,13 @@ label {
   .calender {
     justify-content: space-between !important;
   }
+
   .top_search_section {
     right: 19px;
     top: 0px;
     justify-content: space-between !important;
   }
+
   .row-content {
     display: inline !important;
   }
@@ -1855,14 +1945,17 @@ label {
   .items_background {
     border-radius: 6px !important;
   }
+
   .cust-pl-0 {
     margin: 0px !important;
   }
+
   .top-menu {
     flex-direction: inherit !important;
     align-items: inherit !important;
     padding: 0 !important;
   }
+
   .article-slider-thumbs {
     display: flex;
     justify-content: center;
@@ -1872,13 +1965,92 @@ label {
     background: #f9f9f9;
     padding: 10px;
   }
+
   .video-background {
     height: 100vh !important;
   }
 }
+
 /* Styles for iPad Air portrait */
 @media only screen and (min-width: 768px) and (max-width: 834px) and (orientation: portrait) {
   .event-container {
     max-width: 700px !important;
+  }
+}
+
+a.cursor-pointer:hover {
+  opacity: 0.85;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.form-control::placeholder {
+  color: #6c757d;
+}
+
+.dash-title {
+  color: #000;
+  padding: 15px 30px;
+  font-size: 18px;
+  font-weight: 500;
+  background: #f1f1f1;
+}
+
+.post-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  max-width: 600px;
+  margin: auto;
+}
+
+.profile-pic {
+  width: 40px;
+  height: 40px;
+  background-color: #ccc;
+  border-radius: 50%;
+}
+
+.dropdown-toggle::after {
+  display: none;
+}
+
+.post-title {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.post-body {
+  font-size: 16px;
+  color: #333;
+}
+
+.post-image {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-top: 15px;
+}
+
+@media (min-width: 280px) and (max-width: 667px) {
+  .news-post {
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 8px;
+    margin: 20px;
+  }
+
+  .dash-title {
+    text-align: center;
+  }
+}
+
+@media (min-width: 767px) and (max-width: 992px) {
+  .dash-title {
+    text-align: center;
   }
 }
