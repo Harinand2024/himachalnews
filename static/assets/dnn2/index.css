@@ -333,7 +333,7 @@ img {
 }
 
 .news-card {
-  border: 1px solid #e0e0e0;
+ 
   border-radius: 4px;
   overflow: hidden;
 }
@@ -378,7 +378,7 @@ img {
 }
 
 .news-content {
-  padding: 16px;
+  padding: 0px;
   text-align: left;
 }
 
@@ -386,6 +386,7 @@ img {
   text-decoration: none;
   color: #333;
   cursor: pointer;
+  font-weight: bold;
 }
 
 .news-content a:hover {
@@ -1403,7 +1404,7 @@ a.text-light:hover {
   position: fixed;
   top: 0;
   z-index: 999;
-  background: #4891cd;
+  background: #363b3f;
   width: 100%;
 }
 
@@ -1415,7 +1416,7 @@ a.text-light:hover {
 }
 
 .dxb-top-nav .nav-icon:hover {
-  color: #0d47a1 !important;
+  color: #363b3f !important;
 }
 
 .nav-item {
@@ -1426,7 +1427,7 @@ a.text-light:hover {
 .nav-border {
   border-top: 1px solid #8c8c8c;
   border-bottom: 1px solid #8c8c8c;
-  background: linear-gradient(90deg, #0d47a1, #1976d2);
+  background: #000;
 }
 
 .navbar-expand-lg .navbar-nav .nav-link {
@@ -1443,12 +1444,16 @@ a.text-light:hover {
   background-color: none !important;
   color: #ffffff !important;
   min-width: 20rem;
-  border-bottom: 1px solid #0d47a1;
+  border-bottom: 1px solid #363b3f;
+}
+.dropdown-item a{
+  color: #ffffff !important;
+  text-decoration: none;
 }
 
 .dropdown-item:focus,
 .dropdown-item:hover {
-  background-color: #0d47a1 !important;
+  background-color: #1c1e1f !important;
   color: #ffffff !important;
 }
 
@@ -1487,14 +1492,13 @@ a.text-light:hover {
 }
 
 .dxv-overlay {
-  position: absolute;
-  bottom: 90px;
+  position: relative;
+  bottom: 0px;
   left: 50%;
   transform: translateX(-50%);
-  background: rgba(255, 255, 255, 0.6) !important;
-  padding: 20px 30px;
-  text-align: center;
-  width: 80%;
+  padding: 20px 10px;
+  text-align: left;
+  width: 100%;
   border-radius: 5px;
 }
 
@@ -1515,7 +1519,7 @@ a.text-light:hover {
 
 .dxv-overlay a {
   text-decoration: none;
-  color: #333 !important;
+  
 }
 
 .dxv-overlay a:hover {

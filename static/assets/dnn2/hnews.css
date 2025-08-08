@@ -1,0 +1,31 @@
+body {
+  background-color: var(--background-color) !important;
+  font-family: "Noto Sans Devanagari", sans-serif !important;
+  font-size: 16px !important;
+  color: var(--text-color) !important;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  overflow-x: hidden;
+}
+
+.double-underline {
+  border-bottom: 3px double #ccc;
+  margin-top: 5px;
+}
+
+.section-title {
+  font-weight: 700;
+  font-size: 1.5rem;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+ .b-news a{
+    text-decoration: none !important;
+    font-weight: 600;
+    font-size: 14px;
+  }
+  .b-news a:hover{
+    text-decoration: none !important;
+    font-weight: 600;
+    color: #992204 !important;
+  }

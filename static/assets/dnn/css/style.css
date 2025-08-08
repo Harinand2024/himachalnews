@@ -1,6 +1,6 @@
 body {
   background-color: var(--background-color) !important;
-  font-family: 'Montserrat', sans-serif !important; 
+  font-family: "Noto Sans Devanagari", sans-serif !important; 
   font-size: 16px !important;
   color: var(--text-color) !important;
   transition: background-color 0.3s ease, color 0.3s ease;
@@ -146,9 +146,9 @@ button:hover {
     line-height: 26px;
 }
 .dropdown-menu {
-  background: linear-gradient(320deg, #4c95cf, #185897);
+  background: #000 !important;
   height: auto;
-  overflow: scroll;
+ 
 }
 /* end hari css */
 
@@ -936,7 +936,7 @@ a.text-white {
 }
 
 a.text-white:hover {
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 .view-all:hover {

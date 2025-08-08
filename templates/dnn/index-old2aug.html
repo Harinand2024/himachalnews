@@ -4,7 +4,11 @@
 {% block body %}
 
 <div class="m-auto">
-   
+    <!-- top ads (3 ads) start -->
+    {% include 'top_ads.html' %}
+    <!-- top ads end -->
+
+    <!-- top news (BREAKING NEWS, TRENDING NEWS & Events ) start -->
     {% include 'topnews.html' %}
     <!-- top news end -->
     
@@ -14,7 +18,9 @@
     <!-- news1 end -->
     
     
-    
+    <!-- reels news start -->
+    {% include 'reels-news.html' %}
+    <!-- reels news end -->
 
 
     <!-- articls section start -->
@@ -25,7 +31,11 @@
     {% include 'news2.html' %}
     <!-- news2 end -->
 
-<!-- 
+
+    <!--BRAND PARTNERS Start -->
+    {% include 'bp-logo.html' %}
+    <!--BRAND PARTNERS End -->
+
     <div class="row my-2">
         <div class="col-lg-6 col-md-12">
           <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5922835412614482"
@@ -46,9 +56,11 @@
             (adsbygoogle = window.adsbygoogle || []).push({});
           </script>
         </div>
-    </div> -->
+    </div>
 
 
-   
+    <!--LATESH INSTAGRAM POSTS End -->
+    {% include 'instapost.html' %}
+    <!--LATEST INSTAGRAM POSTS End -->
 </div>
 {% endblock %}

@@ -1,85 +1,57 @@
-<div class="m-3">
-  <div class="row ">
-    <div class="col-lg-5 col-md-12 col-sm-12 mb-3 row-p-0">
-      <div class="breaking-news-bar">
-        <div class="breaking-news-banner">
-          <div class="breaking">VIDEO</div>
-          <div class="news">NEWS</div>
-        </div>
-
-        <div class="ticker-container" onmouseover="pauseTicker('tickerText')" onmouseout="resumeTicker('tickerText')">
-          <div class="ticker-text" id="tickerText">
-            {% for CatVid in videos|slice:":2" %}
-            <a style="color: #d8f0ff !important;" href="/video/{{CatVid.slug}}">
-              <span style="color: #d8f0ff;">{{ CatVid.video_date }}:-</span> {{ CatVid.video_title }}!
-            </a>
-            {% endfor %}
+<div class="container ">
+  <div class="row mt-3 ">
+    <div class="col-lg-3 col-md-12 col-sm-12 mb-3 row-p-0">     
+     <dhiv class="mb-3">
+            <div class="section-title">Braking News</div>
+            <div class="double-underline"></div>
+        </dhiv>
+      <div class="block-content mt-4">
+         {% for news in LatestNews|slice:"1:5" %}
+        <article class="row g-3 align-items-stretch border-bottom pb-3 mb-3">
+          <!-- 🔸 left: Media -->
+          <div class="col-lg-4 col-12">
+            <div class="ratio ratio-16x9 bg-dark">
+              {% if news.video_file %}
+              <video class="w-100 h-100 object-fit-cover" preload="none" loop playsinline autoplay muted>
+                <source src="{{ news.video_file.url }}" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+              {% else %}
+              <img src="{{ news.post_image.url }}" alt="{{ news.post_title }}" title="{{ news.post_title }}"
+                  class="img-fluid rounded w-100 h-100 object-fit-cover" loading="lazy" />
+              {% endif %}
+            </div>
           </div>
-        </div>
-        <div class="ticker-nav">
-          <a href="/all-video-news/all">
-            <button>View More</button>
-          </a>
-        </div>
-      </div>
-      <div class="slider-container-top">
-        <div class=" main-swiper">
-          <div class="swiper-wrapper">
-            {% for CatVid in videos %}
-            <div class="swiper-slide">
-              <a href="/video/{{CatVid.slug}}">
-                <img src="https://img.youtube.com/vi/{{CatVid.video_url}}/hqdefault.jpg" alt="{{CatVid.video_title}}"
-                  title="{{CatVid.video_title}}" loading="lazy" width="709" height="363" />
+          <!-- 🔹 right: Text Content -->
+          <div class="col-lg-8 col-12 d-flex flex-column justify-content-between">
+            <div class="b-news mb-1">
+              <a  href="/{{ news.slug }}">
+                {{ news.post_title|truncatechars:42 }}
               </a>
-              <div class="dxv-overlay">
-                <span class="category">{{ CatVid.News_Category }}</span>
-                <a href="/video/{{CatVid.slug}}">
-                  <h2 class="title">{{ CatVid.video_title }}</h2>
-                </a>
+
+              
+            </div>
+
+            <div class="d-flex align-items-center small  mt-1">
+              <span>{{ news.post_date }}</span>
+              <div class="share-icons-container  mx-2">
+                {% include 'share.html' %}
               </div>
             </div>
-            {% endfor %}
           </div>
-          <div class="swiper-button-next"></div>
-          <div class="swiper-button-prev"></div>
-        </div>
 
-        <div class="swiper thumb-swiper">
-          <div class="swiper-wrapper">
-            {% for CatVid in videos %}
-            <div class="swiper-slide">
-              <img src="https://img.youtube.com/vi/{{CatVid.video_url}}/hqdefault.jpg" alt="{{CatVid.video_title}}"
-                title="{{CatVid.video_title}}" loading="lazy">
-            </div>
-            {% endfor %}
-          </div>
-        </div>
+          
+        </article>
+        {% endfor %}
       </div>
+
     </div>
 
-    <div class="col-lg-5 col-md-12 col-sm-12 mb-3 row-p-0">
-      <div class="breaking-news-bar">
-        <div class="breaking-news-banner">
-          <div class="breaking">HEAD </div>
-          <div class="news">LINES</div>
+    <div class="col-lg-6 col-md-12 col-sm-12 mb-3 row-p-0">      
+      <div class="mb-3">
+            <div class="section-title">Video News</div>
+            <div class="double-underline"></div>
         </div>
-        <div class="ticker-container" onmouseover="pauseTicker('trendingTickerText')"
-          onmouseout="resumeTicker('trendingTickerText')">
-          <div class="ticker-text" id="trendingTickerText">
-            {% for news in headline %}
-            <a style="color: #d8f0ff !important;" href="/{{news.slug}}">
-              <span style="color: #d8f0ff;">{{ news.schedule_date }}:-</span> {{news.post_title }}!
-            </a>
-            {% endfor %}
-          </div>
-        </div>
-        <div class="ticker-nav">
-          <a href="all-news/head-lines">
-            <button>View More</button>
-          </a>
-        </div>
-      </div>
-
       <div class="slider-container-top">
         <div class=" trending-swiper">
           <div class="swiper-wrapper">
@@ -98,32 +70,116 @@
             </div>
             {% endfor %}
           </div>
-          <div class="swiper-button-next trending-next"></div>
-          <div class="swiper-button-prev trending-prev"></div>
+          <!-- <div class="swiper-button-next trending-next"></div>
+          <div class="swiper-button-prev trending-prev"></div> -->
         </div>
         <div class="swiper trending-thumb-swiper">
           <div class="swiper-wrapper">
-            {% for news in headline %}
+            <!-- {% for news in headline %}
             <div class="swiper-slide"><img src="{{ news.post_image.url }}" alt="{{ news.post_title }}"
                 title="{{ news.post_title }}" loading="lazy"></div>
-            {% endfor %}
+            {% endfor %} -->
           </div>
         </div>
       </div>
     </div>
 
-    <div class="col-lg-2 col-md-12 col-sm-12 mb-3 p-0">
-      {% include 'inn/upcoming_events.html'%}
+    <div class="col-lg-3 col-md-12 col-sm-12 mb-3 p-0">
+      <div class="mb-3">
+            <div class="section-title">Articals</div>
+            <div class="double-underline"></div>
+        </div>
+      <div class="block-content">
+      {% for article in Articale|slice:"1:2" %}
+        <article class="post type-post border-bottom pb-3 mb-3">
+          <div class="post-media overflow-hidden mb-2">
+            <div class="ratio ratio-16x9 bg-dark">
+              {% if article.video_file %}
+              <video class="w-100 h-100 object-fit-cover" preload="none" loop playsinline autoplay muted>
+                <source src="{{ article.video_file.url }}" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+              {% else %}
+              <img src="{{ article.post_image.url }}" alt="{{ article.post_title }}" title="{{ article.post_title }}"
+                  loading="lazy" class="img-fluid w-100 h-auto rounded" />
+              {% endif %}
+            </div>
+            <a href="/{{ article.slug }}" class="stretched-link"></a>
+          </div>
+
+          <div class="post-header">
+            <a href="{% url 'catdetails' catlink=article.post_cat.sub_cat.cat_slug slug=article.post_cat.subcat_slug %}"
+              class="badge bg-secondary text-light mb-1 text-decoration-none">
+              {{ article.post_cat|truncatechars:30 }}
+            </a>
+
+            <h3 class="h6 text-dark fw-semibold mb-1 text-truncate">
+              <a href="/{{ article.slug }}" class="text-decoration-none  hover:text-primary">
+                {{ article.post_title|truncatechars:70 }}
+              </a>
+            </h3>
+
+            <div class="d-flex align-items-center small  mt-1">
+              <span>{{ article.post_date }}</span>
+              <div class="share-icons-container mx-2">
+                {% include 'share.html' %}
+              </div>
+            </div>
+          </div>
+        </article>
+        {% endfor %}
+      </div>
+      <div class="block-content mt-4">
+        {% for article in Articale|slice:"2:3" %}
+        <article class="row g-3 align-items-stretch border-bottom pb-3 mb-3">
+          
+          <!-- 🔹 Left: Text Content -->
+          <div class="col-lg-8 col-12 d-flex flex-column justify-content-between">
+            <div>
+              <a href="{% url 'catdetails' catlink=article.post_cat.sub_cat.cat_slug slug=article.post_cat.subcat_slug %}"
+                class="badge bg-secondary text-light mb-1 text-decoration-none fs-7">
+                {{ article.post_cat|truncatechars:30 }}
+              </a>
+
+              <h6 class="h6 text-truncate-2 mb-2">
+                <a href="/{{ article.slug }}" class="text-decoration-none  hover:text-primary">
+                  {{ article.post_title|truncatechars:70 }}
+                </a>
+              </h6>
+            </div>
+
+            <div class="d-flex align-items-center small  mt-1">
+              <span>{{ article.post_date }}</span>
+              <div class="share-icons-container mx-2">
+                {% include 'share.html' %}
+              </div>
+            </div>
+          </div>
+
+          <!-- 🔸 Right: Media -->
+          <div class="col-lg-4 col-12">
+            <div class="ratio ratio-16x9 bg-dark">
+              {% if article.video_file %}
+              <video class="w-100 h-100 object-fit-cover" preload="none" loop playsinline autoplay muted>
+                <source src="{{ article.video_file.url }}" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+              {% else %}
+              <img src="{{ article.post_image.url }}" alt="{{ article.post_title }}" title="{{ article.post_title }}"
+                  class="img-fluid rounded w-100 h-100 object-fit-cover" loading="lazy" />
+              {% endif %}
+            </div>
+          </div>
+        </article>
+        {% endfor %}
+      </div>
+
     </div>
 
   </div>
-</div>
 
-<!--profiles start -->
-{% include 'guist_profiles.html' %}
-<!--profiles end -->
 
-<div class="container row my-2">
+<!-- <div class=" row my-2">
   <div class="col-lg-6 col-md-6 col-sm-12">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5922835412614482"
       crossorigin="anonymous"></script>
@@ -143,4 +199,5 @@
       (adsbygoogle = window.adsbygoogle || []).push({});
     </script>
   </div>
+</div> -->
 </div>

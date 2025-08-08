@@ -141,6 +141,8 @@
   <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
   <script src="{% static 'assets/dnn2/index.js' %}"></script>
   <link rel="stylesheet" href="{% static 'assets/dnn2/index.css' %}">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'assets/dnn2/hnews.css' %}">
 
 
 
@@ -198,35 +200,40 @@
   </script>
 
   <style>
-    :root {
-      --background-color: {{ profile_setting.background_theme_light|default:'#ffffff' }};
-      --text-color: #000000;
-      --primary-color: #007bff;
-    }
-    
-    .dark-mode {
-      --background-color: {{ profile_setting.background_theme_dark|default:'#121212' }};
-      --text-color: #ffffff;
-      --primary-color: #0d6efd;
-    }
+   :root {
+    --background-color: {{ profile_setting.background_theme_light|default:"#ffffff" }};
+    --text-color: #000000;
+    --primary-color: #0d6efd;
+  }
 
-    .Container_background {
-      background-color: {{ profile_setting.container_background|default_if_none:'#fcf8e7' }};
-    }
+  body.dark-mode {
+    --background-color: {{ profile_setting.background_theme_dark|default:"#121212" }};
+    --text-color: #ffffff;
+    --primary-color: #0d6efd;
+  }
 
-    .items_background {
-      background-color: {{ profile_setting.items_background|default_if_none:'#ffffff' }};
-    }
+  body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
 
-    .body_img {
-      {% if profile_setting.body_img %}
-        background-image: url('{{ profile_setting.body_img.url }}');
-        background-repeat: no-repeat;
-        background-size: cover; 
-        background-position: center; 
-      {% endif %}
-    }
-  
+  .Container_background {
+    background-color: {{ profile_setting.container_background|default_if_none:"#fcf8e7" }};
+  }
+
+  .items_background {
+    background-color: {{ profile_setting.items_background|default_if_none:"#ffffff" }};
+  }
+
+  .body_img {
+    {% if profile_setting.body_img %}
+      background-image: url('{{ profile_setting.body_img.url }}');
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+    {% endif %}
+  }
   </style> 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/tiny-slider.css" />
 
@@ -249,3 +256,28 @@
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K8VNS7F5" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <script src="{% static 'ckeditor/ckeditor-init.js' %}"></script>
   <script src="{% static 'ckeditor/ckeditor/ckeditor.js' %}"></script>
+
+  <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const toggle = document.getElementById("theme-toggle");
+    const body = document.body;
+
+    // Load saved preference
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme === "dark") {
+      body.classList.add("dark-mode");
+      toggle.checked = true;
+    }
+
+    toggle.addEventListener("change", function () {
+      if (this.checked) {
+        body.classList.add("dark-mode");
+        localStorage.setItem("theme", "dark");
+      } else {
+        body.classList.remove("dark-mode");
+        localStorage.setItem("theme", "light");
+      }
+    });
+  });
+</script>
+
