@@ -25,6 +25,7 @@
                     {{ post.post_title|truncatechars:120 }}
                   </a>
                 </div>
+                <div>{{post.post_short_des|truncatechars:150}}</div>
                 <div class="meta">
                   <span>{{ post.schedule_date|date }} | {{ post.schedule_date|time }}</span>
                   <div class="shere-shinu" style="--custom-bottom: 0px; --custom-right: 0px;">

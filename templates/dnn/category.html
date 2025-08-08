@@ -12,10 +12,9 @@
     {% if BlogData %}
     <section class="blog-hero-area mb-3 mt-30">
         <div class="container">
-            <div class="section-title sm-mt-24 p-0">
-                <h2 class="title-block">
-                    News
-                </h2>
+            <div class="mb-3">
+                <div class="section-title">News</div>
+                <div class="double-underline"></div>
             </div>
             <div class="row">
                 <div class="col-lg-3">
@@ -57,7 +56,7 @@
                     </article>
                     {% endfor %}
                 </div>
-                <div class="col-lg-6">
+                <div class="col-lg-5">
                     {% for Blog in BlogData|slice:":2" %}
                     <article class="post-block-style-wrapper post-block-template-one sm-mt-24">
                         <div class="post-block-style-inner">
@@ -99,7 +98,7 @@
                     </article>
                     {% endfor %}
                 </div>
-                <div class="col-lg-3">
+                <div class="col-lg-4">
                     {% for Blog in BlogData|slice:"6:12" %}
                     <article class="post-block-style-wrapper post-block-template-two">
                         <div class="post-block-style-inner post-block-list-style-inner">
@@ -191,14 +190,9 @@
     {% if latestnews %}
     <section class="articles-grid-section mt-4">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="section-title">
-                        <h2 class="title-block">
-                            Recent Post
-                        </h2>
-                    </div>
-                </div>
+            <div class="mb-3">
+                <div class="section-title">Recent Post</div>
+                <div class="double-underline"></div>
             </div>
             <div class="row">
                 {% for Blog in latestnews|slice:":3"%}
@@ -261,10 +255,9 @@
 
     <section class="editor-choice-one-area">
         <div class="container">
-            <div class="section-title">
-                <h2 class="title-block">
-                    Top Picks
-                </h2>
+            <div class="mb-3">
+                <div class="section-title">Top Picks</div>
+                <div class="double-underline"></div>
             </div>
             <div class="row">
                 <div class="col-lg-4">
@@ -416,14 +409,9 @@
     {% if trendpost %}
     <section class="editor-choice-two-area">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="section-title">
-                        <h2 class="title-block">
-                            Popular News
-                        </h2>
-                    </div>
-                </div>
+            <div class="mb-3">
+                <div class="section-title">Popular News</div>
+                <div class="double-underline"></div>
             </div>
             <div class="row">
                 <div class="col-lg-8">
@@ -557,14 +545,9 @@
 
     <section class="most-popular-area mt-60">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="section-title">
-                        <h2 class="title-block">
-                            Breaking News
-                        </h2>
-                    </div>
-                </div>
+            <div class="mb-3">
+                <div class="section-title">Braking News</div>
+                <div class="double-underline"></div>
             </div>
             <div class="row mb-50">
                 {% for Blog in breakingnews|slice:":1"%}
@@ -738,12 +721,11 @@
     {% endif %}
 
     {% if vidnews %}
-    <section class="video-posts-area pt-80 pb-80 mt-80">
+    <section class="video-posts-area pt-30 pb-80 mt-80">
         <div class="container">
-            <div class="section-title">
-                <h2 style="color: white !important;" class="title-block">
-                    Videos News
-                </h2>
+            <div class="mb-3">
+                <div class="section-title text-white">Video News</div>
+                <div class="double-underline"></div>
             </div>
             <div class="row">
                 <div class="col-lg-7">
@@ -757,7 +739,7 @@
                                     </a>
                                 </div>
                                 <div class="video-play-icon-wrap">
-                                    <a style="display: flex; align-items: center; justify-content: center;"  href="/video/{{Blog.slug}}" class="theme-play-btn video-play-btn"><i style="font-size: 30px; color: black;" class="fa fa-play"></i></a>
+                                    <a style="display: flex; align-items: center; justify-content: center;"  href="/video/{{Blog.slug}}" class="theme-play-btn video-play-btn"><i style="font-size: 30px; " class="fa fa-play"></i></a>
                                 </div>
                             </div>
                             <div class="post-block-content-wrap">
@@ -766,7 +748,7 @@
                                         <a style="color: white !important;" href="/video/{{Blog.slug}}">{{ Blog.video_title|truncatechars:100 }}</a>
                                     </h2>
                                 </div>
-                                <div class="post-excerpt-box">
+                                <div class="post-excerpt-box text-white">
                                     <p>{{ Blog.video_short_des|truncatechars:120 }}</p>
                                 </div>
                                 <div class="post-bottom-meta">
@@ -781,7 +763,7 @@
                                         {% endif %}
                                         </a>
                                     </div>
-                                    <div class="post-meta-date-box">
+                                    <div class="post-meta-date-box text-white">
                                         {{ Blog.schedule_date|date }} | {{ Blog.schedule_date|time }}
                                     </div>
                                 </div>
@@ -805,7 +787,7 @@
                             <div class="post-block-content-wrap">
                                 <div class="post-item-title">
                                     <h2 class="post-title">
-                                        <a style="color: white !important;" href="/video/{{Blog.slug}}">{{ Blog.video_title|truncatechars:60 }}</a>
+                                        <a style="color: white !important;" href="/video/{{Blog.slug}}">{{ Blog.video_title|truncatechars:160 }}</a>
                                     </h2>
                                 </div>
                                 <div class="post-bottom-meta">
@@ -820,7 +802,7 @@
                                         {% endif %}
                                         </a>
                                     </div>
-                                    <div class="post-meta-date-box">
+                                    <div class="post-meta-date-box text-white">
                                         {{ Blog.schedule_date|date }} | {{ Blog.schedule_date|time }}
                                     </div>
                                 </div>
@@ -877,12 +859,9 @@
     {% if Articale %}
     <section class="popular-posts-column-area mt-60 mb-35">
         <div class="container">
-            <div class="row">
-                <div class="section-title">
-                    <h2 class="title-block">
-                        Articals
-                    </h2>
-                </div>
+            <div class="mb-3">
+                <div class="section-title">Articals</div>
+                <div class="double-underline"></div>
             </div>
             <div class="row">
                 {% for Blog in Articale|slice:":5"%}
@@ -991,6 +970,22 @@
         width: 100%;
         object-fit: contain;
     }
+    .post-title {
+        font-size: 16px !important;
+    }
+
+    .post-block-style-wrapper .post-block-content-wrap .post-excerpt-box p,
+    .post-bottom-meta {
+        color: inherit !important;
+    }
+    .post-bottom-meta{
+        justify-content: inherit !important;
+        gap: 10px !important;
+    }
+    .blog-pagination-area ul.page-numbers li span.page-numbers {
+    color: #e01f15 !important;
+    border-color: #e01f15 !important;
+}
 </style>
 
 {% endblock %}

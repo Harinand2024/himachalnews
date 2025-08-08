@@ -84,97 +84,70 @@
       </div>
     </div>
 
-    <div class="col-lg-3 col-md-12 col-sm-12 mb-3 p-0">
-      <div class="mb-3">
-            <div class="section-title">Articals</div>
-            <div class="double-underline"></div>
+    <!-- Wrapper for Trending News Slider -->
+  <div class="col-lg-3 col-md-12 col-sm-12 p-0">
+        <div class="">
+          <div class="section-title">Trending News</div>
+          <div class="double-underline"></div>
         </div>
-      <div class="block-content">
-      {% for article in Articale|slice:"1:2" %}
-        <article class="post type-post border-bottom pb-3 mb-3">
-          <div class="post-media overflow-hidden mb-2">
-            <div class="ratio ratio-16x9 bg-dark">
-              {% if article.video_file %}
-              <video class="w-100 h-100 object-fit-cover" preload="none" loop playsinline autoplay muted>
-                <source src="{{ article.video_file.url }}" type="video/mp4">
-                Your browser does not support the video tag.
-              </video>
-              {% else %}
-              <img src="{{ article.post_image.url }}" alt="{{ article.post_title }}" title="{{ article.post_title }}"
-                  loading="lazy" class="img-fluid w-100 h-auto rounded" />
-              {% endif %}
+        <!-- Slider Start -->
+        <div class="hnews-slider">
+            {% for Blog in trendpost %}
+            <div class="post-block-style-wrapper post-block-template-four my-3">
+                <div class="post-block-style-inner post-block-list-style-inner">
+                  <div class="post-block-media-wrap">
+                        <a href="/{{ Blog.slug }}">
+                            <img src="{{ Blog.post_image.url }}" 
+                                 alt="{{ Blog.post_title }}" 
+                                 title="{{ Blog.post_title }}" 
+                                 loading="lazy">
+                        </a>
+                    </div>
+                    <div class="post-block-content-wrap mt-3">
+                        <div class="post-item-title">
+                            <h2 class="post-title">
+                                <a href="/{{ Blog.slug }}">
+                                    {{ Blog.post_title|truncatechars:80 }}
+                                </a>
+                            </h2>
+                        </div>
+                        <div class="post-excerpt-box">
+                            <p>{{ Blog.post_short_des|truncatechars:150 }}</p>
+                        </div>
+                        <div class="post-bottom-meta">
+                            <div class="post-meta-author-box">
+                                By 
+                                <a style="color: #de1c24 !important;" href="javascript:void(0)">
+                                    {% if Blog.author %}
+                                        {{ Blog.author.first_name|capfirst }} {{ Blog.author.last_name|capfirst }}
+                                    {% elif Blog.journalist %}
+                                        {{ Blog.journalist.first_name|capfirst }} {{ Blog.journalist.last_name|capfirst }}
+                                    {% else %}
+                                        Admin
+                                    {% endif %}
+                                </a>
+                            </div>
+                             <div class="d-flex align-items-center small  mt-1">
+                              <span>{{ Blog.schedule_date|date }} | {{ Blog.schedule_date|time }}</span>
+                              <div class="share-icons-container  mx-2">
+                                {% include 'share.html' with posts=Blog %}
+                              </div>
+                            </div>
+                           
+                        </div>
+                    </div>
+                    
+                </div>
             </div>
-            <a href="/{{ article.slug }}" class="stretched-link"></a>
-          </div>
-
-          <div class="post-header">
-            <a href="{% url 'catdetails' catlink=article.post_cat.sub_cat.cat_slug slug=article.post_cat.subcat_slug %}"
-              class="badge bg-secondary text-light mb-1 text-decoration-none">
-              {{ article.post_cat|truncatechars:30 }}
-            </a>
-
-            <h3 class="h6 text-dark fw-semibold mb-1 text-truncate">
-              <a href="/{{ article.slug }}" class="text-decoration-none  hover:text-primary">
-                {{ article.post_title|truncatechars:70 }}
-              </a>
-            </h3>
-
-            <div class="d-flex align-items-center small  mt-1">
-              <span>{{ article.post_date }}</span>
-              <div class="share-icons-container mx-2">
-                {% include 'share.html' %}
-              </div>
-            </div>
-          </div>
-        </article>
-        {% endfor %}
-      </div>
-      <div class="block-content mt-4">
-        {% for article in Articale|slice:"2:3" %}
-        <article class="row g-3 align-items-stretch border-bottom pb-3 mb-3">
-          
-          <!-- 🔹 Left: Text Content -->
-          <div class="col-lg-8 col-12 d-flex flex-column justify-content-between">
-            <div>
-              <a href="{% url 'catdetails' catlink=article.post_cat.sub_cat.cat_slug slug=article.post_cat.subcat_slug %}"
-                class="badge bg-secondary text-light mb-1 text-decoration-none fs-7">
-                {{ article.post_cat|truncatechars:30 }}
-              </a>
-
-              <h6 class="h6 text-truncate-2 mb-2">
-                <a href="/{{ article.slug }}" class="text-decoration-none  hover:text-primary">
-                  {{ article.post_title|truncatechars:70 }}
-                </a>
-              </h6>
-            </div>
-
-            <div class="d-flex align-items-center small  mt-1">
-              <span>{{ article.post_date }}</span>
-              <div class="share-icons-container mx-2">
-                {% include 'share.html' %}
-              </div>
-            </div>
-          </div>
-
-          <!-- 🔸 Right: Media -->
-          <div class="col-lg-4 col-12">
-            <div class="ratio ratio-16x9 bg-dark">
-              {% if article.video_file %}
-              <video class="w-100 h-100 object-fit-cover" preload="none" loop playsinline autoplay muted>
-                <source src="{{ article.video_file.url }}" type="video/mp4">
-                Your browser does not support the video tag.
-              </video>
-              {% else %}
-              <img src="{{ article.post_image.url }}" alt="{{ article.post_title }}" title="{{ article.post_title }}"
-                  class="img-fluid rounded w-100 h-100 object-fit-cover" loading="lazy" />
-              {% endif %}
-            </div>
-          </div>
-        </article>
-        {% endfor %}
-      </div>
-
+            {% endfor %}
+        </div>
+        <!-- Slider End -->
     </div>
+
+
+</div>
+
+
 
   </div>
 
@@ -201,3 +174,27 @@
   </div>
 </div> -->
 </div>
+<!-- Slick Slider CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css"/>
+
+<!-- jQuery & Slick JS -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+
+<!-- Initialize Slider -->
+<script>
+  $(document).ready(function(){
+    $('.hnews-slider').slick({
+      autoplay: true,
+      autoplaySpeed: 3000,
+      arrows: false,
+      dots: true,
+      infinite: true,
+      speed: 500,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      adaptiveHeight: true
+    });
+  });
+</script>

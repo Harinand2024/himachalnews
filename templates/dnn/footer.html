@@ -9,39 +9,81 @@
         </a>
         <p class="small">
           Himachal News — The voice of the hills, the heartbeat of Himachal.
-From Shimla to Spiti, Kullu to Kangra, we bring you bold reporting, ground stories, and cultural narratives from the heart of Himachal Pradesh — and beyond. We also cover national developments that impact the state — in tourism, environment, infrastructure, and governance.
-Open to collaborations, PR campaigns, and ethical brand partnerships.
-Himachal News — From the Hills, For the People.
+          From Shimla to Spiti, Kullu to Kangra, we bring you bold reporting, ground stories, and cultural narratives from the heart of Himachal Pradesh — and beyond. We also cover national developments that impact the state — in tourism, environment, infrastructure, and governance.
+          Open to collaborations, PR campaigns, and ethical brand partnerships.
+          Himachal News — From the Hills, For the People.
 
 
         </p>
         <div class="d-flex gap-2">
-          {% if profile_setting.facbook %}<a href="{{ profile_setting.facbook }}" class="text-white"><i class="unicon-logo-facebook"></i></a>{% endif %}
-          {% if profile_setting.twitter %}<a href="{{ profile_setting.twitter }}" class="text-white"><i class="unicon-logo-x-filled"></i></a>{% endif %}
-          {% if profile_setting.instagram %}<a href="{{ profile_setting.instagram }}" class="text-white"><i class="unicon-logo-instagram"></i></a>{% endif %}
-          {% if profile_setting.youtube %}<a href="{{ profile_setting.youtube }}" class="text-white"><i class="unicon-logo-youtube"></i></a>{% endif %}
-          {% if profile_setting.linkedin %}<a href="{{ profile_setting.linkedin }}" class="text-white"><i class="unicon-logo-linkedin"></i></a>{% endif %}
+          <ul class="list-unstyled d-flex  gap-3">
+            {% if profile_setting.facbook %}
+              <li class="">
+                <a href="{{ profile_setting.facbook }}" target="_blank" class="nav-link text-white fs-4">
+                  <i class="bi bi-facebook"></i>
+                </a>
+              </li>
+            {% endif %}
+            {% if profile_setting.twitter %}
+              <li class="">
+                <a href="{{ profile_setting.twitter }}" target="_blank" class="nav-link text-white fs-4">
+                  <i class="bi bi-twitter"></i>
+                </a>
+              </li>
+            {% endif %}
+            {% if profile_setting.instagram %}
+              <li class="">
+                <a href="{{ profile_setting.instagram }}" target="_blank" class="nav-link text-white fs-4">
+                  <i class="bi bi-instagram"></i>
+                </a>
+              </li>
+            {% endif %}
+            {% if profile_setting.youtube %}
+              <li class="">
+                <a href="{{ profile_setting.youtube }}" target="_blank" class="nav-link text-white fs-4">
+                  <i class="bi bi-youtube"></i>
+                </a>
+              </li>
+            {% endif %}
+            {% if profile_setting.linkedin %}
+              <li class="">
+                <a href="{{ profile_setting.linkedin }}" target="_blank" class="nav-link text-white fs-4">
+                  <i class="bi bi-linkedin"></i>
+                </a>
+              </li>
+            {% endif %}
+          </ul>
         </div>
       </div>
 
       <!-- Articles -->
-      <div class="col-lg-5 col-md-12 mb-4">
-        <h5 class="text-uppercase">Articles</h5>
-        <div class="row g-2">
-          {% for article in Articale|slice:":9" %}
-          <div class="col-4">
-            <a href="/{{ article.slug }}">
-              <img src="{{ article.post_image.url }}" alt="{{ article.post_title }}" title="{{ article.post_title }}" class="img-fluid rounded" style="width: 100px; height: auto;">
-            </a>
-          </div>
-          {% endfor %}
-        </div>
-      </div>
+          <div class="col-lg-5 col-md-12 col-sm-12 mb-3 px-5">
+              <div class="widget links-widget vstack gap-3">
+                <div class="widgt-title">
+                  <h3 class="fs-5 text-left m-0 text-white">ARTICLES</h3>
+                </div>
+
+                <!-- Reduce gutter (gap) -->
+                <div class="row gx-3 gy-2 d-flex "> <!-- Changed from g-4 to g-2 -->
+                  {% for article in Articale|slice:":12" %}
+                  <div class=" col-md-3"> <!-- Reduced padding -->
+                    <a class="text-decoration-none" href="/{{ article.slug }}">
+                      <div class="rounded border-0 text-start">
+                        <img src="{{ article.post_image.url }}" alt="{{ article.post_title }}"
+                          title="{{ article.post_title }}" class="img-fluid rounded w-100px h-auto" loading="lazy" />
+                       
+                      </div>
+                    </a>
+                  </div>
+                  {% endfor %}
+                </div>
+              </div>
+            </div>
 
       <!-- Quick Links -->
       <div class="col-lg-3 col-md-12 mb-4">
         <h5 class="text-uppercase">Quick Links</h5>
-        <ul class="list-unstyled">
+        <ul class="list-unstyled small">
           {% for page in pages %}
           <li><a href="{% url 'cms' page.slug %}" class="text-white text-decoration-none">{{ page.pagename }}</a></li>
           {% endfor %}

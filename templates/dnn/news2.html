@@ -105,7 +105,9 @@
     </div>
 
     <!-- RIGHT SECTION (Carousel or Sidebar) -->
-    <div class="col-lg-3 col-md-3 col-sm-12 mb-3 text-left">
+     
+    <div class="col-lg-3 col-md-3 col-sm-12 mb-3 text-left ">
+      <div class="d-lg-block sticky-sidebar">
       <div class="mb-3 mt-3">
         <div class="section-title">ALL NEWS</div>
         <div class="double-underline"></div>
@@ -115,7 +117,7 @@
         <div class="carousel-inner">
           {% for category, subcat_data in grouped_postsdata2.items %}
             {% with subcat_data.posts as posts %}
-              {% for post in posts|slice:"0:12" %}
+              {% for post in posts|slice:"0:6" %}
               <div class="carousel-item {% if forloop.parentloop.first and forloop.first %}active{% endif %}">
                 <div class="row">
                   <div class="col-12 mb-4">
@@ -157,6 +159,13 @@
           </span>
         </div>
       </div>
+
+      <div class="mb-3 mt-3">
+        <div class="section-title">Popular Videos</div>
+        <div class="double-underline"></div>
+      </div>
+       {% include 'popular-videos.html' %}
+    </div>
     </div>
   </div>
 </div>
