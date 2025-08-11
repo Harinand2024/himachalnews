@@ -2,13 +2,13 @@
 <div class="container  m-0 p-0 " style="max-width: 100%;">
      <!-- Breaking News Ticker -->
       <div class="breaking-news small bg-dark text-white d-flex align-items-center" style="height: 40px;">
-        <div class="breaking-label bg-danger text-white px-3 py-2 fw-bold">
+        <div class="breaking-label text-white px-3 py-2 fw-bold">
           Breaking News
         </div>
         <marquee behavior="scroll" direction="left" scrollamount="5" class="px-3">
          {% for CatVid in videos|slice:":2" %}
             <a style="color: #fff !important; text-decoration:none;" href="/video/{{CatVid.slug}}">
-              <span>{{ CatVid.video_date }}:-</span> {{ CatVid.video_title }}!
+               {{ CatVid.video_title }}!
             </a>
             {% endfor %}
         </marquee>
@@ -79,7 +79,7 @@
                                 <input type="text" name="title" class="form-control" placeholder="Search for posts..."
                                     required>
                                 <button type="submit" class="btn btn-primary mt-3 w-100"
-                                    style="background-color: #d91c1c;">Search</button>
+                                    style="background-color: #d91c1c; border: none;">Search</button>
                             </form>
                         </div>
                     </div>

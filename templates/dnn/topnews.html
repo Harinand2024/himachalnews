@@ -55,16 +55,16 @@
       <div class="slider-container-top">
         <div class=" trending-swiper">
           <div class="swiper-wrapper">
-            {% for news in headline %}
+            {% for CatVid in videos %}
             <div class="swiper-slide">
-              <a href="/{{news.slug}}">
-                <img src="{{ news.post_image.url }}" alt="{{ news.post_title }}" title="{{ news.post_title }}"
-                  loading="lazy" width="1200" height="363">
+              <a href="/video/{{CatVid.slug}}">
+                <img src="https://img.youtube.com/vi/{{CatVid.video_url}}/hqdefault.jpg" alt="{{CatVid.video_title}}"
+                  title="{{CatVid.video_title}}" loading="lazy" width="709" height="363" />
               </a>
               <div class="dxv-overlay">
-                <span class="category">{{ news.post_cat }}</span>
-                <a href="/{{news.slug}}">
-                  <h2 class="title">{{ news.post_title|slice:":80"|safe }}</h2>
+                <span class="category">{{ CatVid.News_Category }}</span>
+                <a href="/video/{{CatVid.slug}}">
+                  <h2 class="title">{{ CatVid.video_title }}</h2>
                 </a>
               </div>
             </div>

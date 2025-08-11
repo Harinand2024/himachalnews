@@ -1,8 +1,10 @@
 {% load static %}
 <div class="mb-3 news-card">
-    <div class="position-relative">
-        <h6 class="news-header">Sponsored</h6>
-    </div>
+     <div class="mb-3">
+          <div class="section-title">Sponsored</div>
+          <div class="double-underline"></div>
+        </div>
+    
     <div class="mb-3">
         {% for adrcol in adright %}
         <a href="{{adrcol.ad_url}}" target="_blank"><img class="img-fluid w-100 news-image"
@@ -23,7 +25,11 @@
 
 
 <div class="mb-3 ">
-    <h6 class="news-header">Trending News</h6>
+     <div class="mb-3">
+          <div class="section-title">Trending News</div>
+          <div class="double-underline"></div>
+        </div>
+    
     <div class=" mb-3">
         {% for trendingpost in trendpost %}
         <div class="news-card mb-3">
