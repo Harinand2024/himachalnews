@@ -1,22 +1,15 @@
 {% include "head.html" %}
 {% block body %}
 {% load static %}
-<div class="video-background">
-    <video autoplay muted loop playsinline>
-        <source src="{% static 'assets/dnn2/artdomain_sing-up.mp4' %}" type="video/mp4">
-        Your browser does not support HTML5 video.
-    </video>
-</div>
-<div class="container-fluid dxb-bg py-5">
-    <div class="m-3">
-        <div class="row">
-            <div class="col-lg-8 col-md-12 col-sm-12 "></div>
-            <div class="col-lg-4 col-md-12 col-sm-12">
-                <div class="form-wrapper">
+
+        <div class="singup-content container-fluid dxb-bg py-4">
+            <div class="m-3">
+        
+                <div class="row">
                     <div class="login-container" id="login-container">
                         <div class="col-md-12 sighnup-logo">
                             <a href="/">
-                                <img src="{% static 'assets/dnn/img/logo_sighnup.png' %}" alt="DXB NEWS">
+                                <img src="{{ profile_setting.logo_dark.url }}" style="width:200px;" alt="newsibleasia">
                             </a>
                             <h2 class="text-center sgignup-head">Login</h2>
                         </div>
@@ -59,9 +52,9 @@
                     </div>
                 </div>
             </div>
+            
         </div>
-    </div>
-</div>
+ 
 
 <script>
     document.getElementById("login-form").addEventListener("submit", function (event) {
@@ -106,21 +99,6 @@
     });
 </script>
 <style>
-    .video-background {
-        position: fixed;
-        top: 0;
-        left: 0;
-        min-width: 100%;
-        min-height: 100%;
-        z-index: -1; /* Push behind everything */
-        overflow: hidden;
-    }
-    
-    .video-background video {
-        width: 100%;
-        height: 100%;
-        object-fit: cover; /* ensures the video covers the whole background */
-    }
     
     .singup-content {
         position: relative;
@@ -129,38 +107,44 @@
     }
     
     .dxb-bg {
+        background: #eee;
         background-size: cover;
         background-attachment: fixed;
         align-items: center;
         min-height: 100vh;
-        justify-content: end;
+        justify-content: center;
+        display: flex;
+        
     }
+
 
     .sighnup-logo {
         text-align: center;
 
     }
 
-    .form-wrapper {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
+     .form-wrapper {
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        max-width: 500px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        margin: auto;
     }
 
     .login-container,
     .reset-container {
-        background: linear-gradient(to bottom right, #FEFBF4, #C2C2C0) !important;
+        background: #fff !important;
         border-radius: 30px !important;
         padding: 20px;
         box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
         width: 350px;
-
+        margin: auto;
     }
 
     .form-control {
         border-radius: 8px;
-        color: #666;
+        color: #111 !important;
         height: 44px;
         font-size: 14px;
     }
@@ -168,16 +152,15 @@
     .btn-login,
     .btn-reset {
         width: 100%;
-        background: #d61e25;
+        background: #03268b;
         color: #fff;
         opacity: 1 !important;
-        padding: 16px;
         border-radius: 8px;
     }
 
     .btn-login:hover,
     .btn-reset:hover {
-        background: #b7161b;
+        background: #031f73;
         color: #fff;
     }
 
@@ -202,18 +185,60 @@
         font-size: 36px;
     }
 
-    @media only screen and (max-width: 576px) {
-        .dxb-bg {
-            /*  background: url("{% static 'assets/dnn/img/signupform.jpg' %}") no-repeat center center; */
-            background: linear-gradient(to bottom right, #1e3c72, #ff512f) !important;
-        }
+   
+.hero {
+      z-index: -1;
+    }
+    .cube {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      border: 1px solid #0036A8;
+      transform-origin: top left;
+      transform: scale(0) rotate(0deg) translate(-50%, -50%);
+      animation: cube 12s ease-in forwards infinite;
+      opacity: 1;
     }
 
-    @media only screen and (min-width: 577px) and (max-width: 991px) {
-        .dxb-bg {
-            /*  background: url("{% static 'assets/dnn/img/signupform.jpg' %}") no-repeat center center; */
-            background: linear-gradient(to bottom right, #1e3c72, #ff512f) !important;
-        }
+    .cube:nth-child(2) {
+      animation-delay: 2s;
+      left: 25vw;
+      top: 40vh;
+    }
+
+    .cube:nth-child(3) {
+      animation-delay: 4s;
+      left: 75vw;
+      top: 50vh;
+    }
+
+    .cube:nth-child(4) {
+      animation-delay: 6s;
+      left: 90vw;
+      top: 10vh;
+    }
+
+    .cube:nth-child(5) {
+      animation-delay: 8s;
+      left: 10vw;
+      top: 85vh;
+    }
+
+    .cube:nth-child(6) {
+      animation-delay: 10s;
+      left: 50vw;
+      top: 10vh;
+    }
+
+    @keyframes cube {
+      0% {
+        transform: scale(0) rotate(0deg) translate(-50%, -50%);
+        opacity: 1;
+      }
+      100% {
+        transform: scale(20) rotate(960deg) translate(-50%, -50%);
+        opacity: 0;
+      }
     }
 </style>
 

@@ -819,7 +819,7 @@ img {
 .sticky-sidebar {
   position: sticky;
   top: 50px;
-  z-index: 1000;
+  z-index: 1;
   margin-bottom: 20px;
   /* Lower than modal z-index */
 }
@@ -1579,7 +1579,7 @@ a.text-light:hover {
   background: linear-gradient(to bottom right, #fefbf4, #c2c2c0) !important;
   border-radius: 30px !important;
   padding: 20px;
-  width: 350px !important;
+  width: 450px !important;
   margin: auto !important;
 }
 

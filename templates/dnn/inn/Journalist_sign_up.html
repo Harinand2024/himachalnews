@@ -1,12 +1,7 @@
 {% include "head.html" %}
 {% block body %}
 {% load static %}
-<div class="video-background">
-    <video autoplay muted loop playsinline>
-        <source src="{% static 'assets/dnn2/artdomain_sing-up.mp4' %}" type="video/mp4">
-        Your browser does not support HTML5 video.
-    </video>
-</div>
+
 
 <div class="singup-content container-fluid dxb-bg py-4">
     <div class="row">
@@ -16,7 +11,7 @@
                 <div class="row form-container">
                     <div class="col-md-12 sighnup-logo">
                         <a href="/">
-                            <img src="{% static 'assets/dnn/img/logo_sighnup.png' %}" alt="DXB NEWS">
+                            <img src="{{ profile_setting.logo_dark.url }}" class="w-50" alt="newsibleasia">
                         </a>
                         <h2 class="text-center sgignup-head">Create Account</h2>
                     </div>
@@ -27,7 +22,7 @@
                                 {% csrf_token %}
                                 <!-- Progress Bar -->
                                 <div class="progress-line"></div>
-                                <div class="progress-container  mb-3">
+                                <div class="progress-container  mb-2">
                                     <div class="progress-step active" id="step-1-indicator">1</div>
                                     <div class="progress-step" id="step-2-indicator">2</div>
                                     <div class="progress-step" id="step-3-indicator">3</div>
@@ -37,36 +32,36 @@
 
                                 <!-- Step 1: Personal Info -->
                                 <div class="step active">
-                                    <h5 class="text-uppercase f-bold">Personal Information</h5>
+                                    <h5 class="text-uppercase f-bold py-3">Personal Information</h5>
                                     <div class="row">
-                                        <div class="col-md-6 mb-3">
+                                        <div class="col-md-6 mb-2">
                                             <input type="text" name="first_name" placeholder="First Name"
                                                 class="form-control" required>
                                         </div>
 
-                                        <div class="col-md-6 mb-3">
+                                        <div class="col-md-6 mb-2">
                                             <input type="text" name="last_name" placeholder="Last Name"
                                                 class="form-control" required>
                                         </div>
 
-                                        <div class="col-md-12 mb-3">
+                                        <div class="col-md-12 mb-2">
                                             <div class="input-group">
                                                 <select id="registration_type" class="form-select"
                                                     name="registration_type" onchange="toggleRegistrationFields()"
                                                     required>
-                                                    <option value="artist">Artist</option>
+                                                    <!-- <option value="arti</optionst">Artist> -->
                                                     <option value="journalist">Journalist</option>
-                                                    <option value="organisation">Organisation</option>
+                                                    <!-- <option value="organisation">Organisation</option> -->
                                                 </select>
                                             </div>
                                         </div>
 
-                                        <div class="col-md-12 mb-3" id="organisation_input" style="display: none;">
+                                        <div class="col-md-12 mb-2" id="organisation_input" style="display: none;">
                                             <input id="organisation_name" name="organisation_name" class="form-control"
                                                 placeholder="Organisation">
                                         </div>
 
-                                        <div class="col-md-12 mb-3" id="parent_organisations_group"
+                                        <div class="col-md-12 mb-2" id="parent_organisations_group"
                                             style="display: none;">
                                             <div class="input-group">
                                                 <label class="form-label">choose your organization/institute</label>
@@ -82,8 +77,7 @@
                                                 </select>
                                             </div>
                                         </div>
-
-                                        <div class="col-md-12 mb-3">
+                                        <div class="col-md-12 mb-2">
                                             <div class="d-flex flex-wrap gap-2">
                                                 <div class="flex-grow-0" style="width: 100%;">
                                                     <select id="country_code" name="country_code"
@@ -93,9 +87,11 @@
                                                             data-dial="{{ country.dial_code }}"
                                                             data-name="{{ country.name }}">
                                                             {{ country.name }} ({{ country.dial_code }})
+                                                            
                                                         </option>
                                                         {% endfor %}
                                                     </select>
+                                                    
                                                     <div class="flex-grow-1">
                                                         <input type="tel" id="phone_number" name="phone_number"
                                                             class="form-control" placeholder="Enter phone number"
@@ -106,7 +102,7 @@
                                             <small id="phone_error" class="text-danger mt-1 d-block"></small>
                                         </div>
 
-                                        <div class="col-md-12 mb-3">
+                                        <div class="col-md-12 mb-2">
                                             <div class="input-group">
                                                 <input type="email" id="signup_email" name="email" class="form-control"
                                                     placeholder="Enter your email" required autocomplete="off"
@@ -117,7 +113,7 @@
                                             <small class="text-danger error-message" id="error_signup_email"></small>
                                         </div>
 
-                                        <div class="col-md-12 mb-3">
+                                        <div class="col-md-12 mb-2">
                                             <input type="text" id="signup_otp" name="otp" class="form-control"
                                                 placeholder="Enter OTP" disabled autocomplete="off">
                                             <small id="otpVerifyStatusSignup" class="text-danger"></small>
@@ -139,15 +135,15 @@
                                 <div class="step">
                                     <h5> Contact Details</h5>
                                     <div class="row">
-                                        <div class="col-md-12 mb-3">
+                                        <div class="col-md-12 mb-2">
                                             <input type="text" name="address_line1" placeholder="Address Line 1"
                                                 class="form-control" required>
                                         </div>
-                                        <div class="col-md-12 mb-3">
+                                        <div class="col-md-12 mb-2">
                                             <input type="text" name="address_line2" placeholder="Address Line 2"
                                                 class="form-control">
                                         </div>
-                                        <div class="col-md-12 mb-3">
+                                        <div class="col-md-12 mb-2">
                                             <label for="languages">Select Country *</label>
                                             <select id="nationality" name="nationality" class="form-control select2"
                                                 required>
@@ -159,7 +155,7 @@
                                             </select>
                                         </div>
 
-                                        <div class="col-md-12 mb-3">
+                                        <div class="col-md-12 mb-2">
                                             <label for="languages">Select State *</label>
                                             <select id="state" name="selected_state" class="form-control select2">
                                                 <option value="">-- Select State --</option>
@@ -168,26 +164,26 @@
                                         </div>
 
 
-                                        <div class="col-md-12 mb-3">
+                                        <div class="col-md-12 mb-2">
                                             <label for="languages">Select City *</label>
                                             <select id="city" name="selected_city" class="form-control select2">
                                                 <option value="">-- Select City --</option>
                                             </select>
                                         </div>
 
-                                        <div class="col-md-12 mb-3">
+                                        <div class="col-md-12 mb-2">
                                             <input type="text" id="zipcode" name="selected_zipcode"
                                                 placeholder="Zip Code" class="form-control" required>
                                         </div>
                                     </div>
 
-                                    <button type="button" class="btn btn-primary-next next-step mb-3">Next</button>
+                                    <button type="button" class="btn btn-primary-next next-step mb-2">Next</button>
                                     <button type="button" class="btn btn-primary-prev prev-step">Previous</button>
                                 </div>
 
                                 <div class="step">
                                     <div class="row">
-                                        <div class="col-md-12 mb-3">
+                                        <div class="col-md-12 mb-2">
                                             <label for="languages">Select Languages *</label>
                                             <select id="languages" name="selected_language[]" class="form-control select2"
                                                 multiple required>
@@ -198,7 +194,7 @@
                                         </div>
 
                                         
-                                    <div class="col-md-12 mb-3">
+                                    <div class="col-md-12 mb-2">
                                     <label for="social_media" class="form-label">Select Social Media</label>
                                     <select id="social_media" class="form-select select2" onchange="addSocialMedia()" required>
                                         <option disabled selected hidden>Select platform</option>
@@ -210,18 +206,18 @@
                                     </select>
                                     </div>
                                     
-                                    <div class="col-md-12 mb-3" id="social_links"></div>
+                                    <div class="col-md-12 mb-2" id="social_links"></div>
                                         
                                         
                                     </div>
-                                    <button type="button" class="btn btn-primary-next next-step mb-3">Next</button>
+                                    <button type="button" class="btn btn-primary-next next-step mb-2">Next</button>
                                     <button type="button" class="btn btn-primary-prev prev-step">Previous</button>
                                 </div>
 
                                 <div class="step">
                                     <h5>Upload Documents</h5>
                                     <div class="row">
-                                        <div class="col-md-12 mb-3">
+                                        <div class="col-md-12 mb-2">
                                             <label for="equipments">Select Equipment *</label>
                                             <select id="equipments" name="selected_equipment[]"
                                                 class="form-control select2" multiple required>
@@ -232,30 +228,30 @@
                                         </div>
 
 
-                                        <div class="col-md-12 mb-3">
+                                        <div class="col-md-12 mb-2">
                                             <label class="form-label">Licence / Registration</label>
                                             <input type="file" name="passport_document" class="form-control"
                                                 accept="image/*,application/pdf" style="padding: 13px; height: 51px;"
                                                 required>
                                         </div>
-                                        <div class="col-md-12 mb-3">
+                                        <div class="col-md-12 mb-2">
                                             <label class="form-label">ID Proof </label>
                                             <input type="file" name="government_document" class="form-control"
                                                 accept="image/*,application/pdf" style="padding: 13px; height: 51px;"
                                                 required>
                                         </div>
-                                        <div class="col-md-12 mb-3">
+                                        <div class="col-md-12 mb-2">
                                             <label class="form-label">Profile Picture *</label>
                                             <input type="file" name="profile_picture" class="form-control"
                                                 accept="image/*,application/pdf" style="padding: 13px; height: 51px;"
                                                 required>
                                         </div>
-                                        <div class="col-md-12 mb-3">
+                                        <div class="col-md-12 mb-2">
                                             <textarea class="form-control"
                                                 placeholder="Write about yourself in 100 words" name="message_type"
                                                 rows="3" oninput="limitWords(this, 100)"></textarea>
                                         </div>
-                                        <div class="col-md-12 mb-3">
+                                        <div class="col-md-12 mb-2">
                                             <input type="checkbox" id="agree" name="agree" required>
                                             <label for="agree"> I agree to the
                                                 <a href="#" style="color:#007bff !important;" data-bs-toggle="modal"
@@ -265,7 +261,7 @@
                                             <small class="text-danger error-message" id="error_agree"></small>
                                         </div>
                                     </div>
-                                    <button type="button" class="btn btn-primary-next next-step mb-3">Next</button>
+                                    <button type="button" class="btn btn-primary-next next-step mb-2">Next</button>
                                     <button type="button" class="btn btn-primary-prev prev-step">Previous</button>
                                 </div>
 
@@ -274,14 +270,14 @@
                                     <h5>Create Your Password</h5>
                                     <div class="row">
                                         <!-- Password Field -->
-                                        <div class="col-md-12 mb-3">
+                                        <div class="col-md-12 mb-2">
                                             <!-- <label class="form-label">Password *</label> -->
                                             <input type="password" name="password" placeholder="Password" id="password"
                                                 class="form-control" required>
                                             <small class="text-danger error-message" id="error_password"></small>
                                             <!-- ✅ Display error here -->
                                         </div>
-                                        <div class="col-md-12 mb-3">
+                                        <div class="col-md-12 mb-2">
                                             <!-- <label class="form-label">Confirm Password *</label> -->
                                             <input type="password" name="confirm_password"
                                                 placeholder="Confirm Password" id="confirm_password"
@@ -333,7 +329,7 @@
         // Create wrapper div
         let div = document.createElement("div");
         div.id = platform;
-        div.className = "row mb-3";
+        div.className = "row mb-2";
 
         // Create label div
         let labelDiv = document.createElement("div");
@@ -721,7 +717,7 @@
         left: 0;
         min-width: 100%;
         min-height: 100%;
-        z-index: -1;
+        z-index: 0;
         overflow: hidden;
     }
 
@@ -740,11 +736,12 @@
     }
 
     .dxb-bg {
+        background: #efefef;
         background-size: cover;
         background-attachment: fixed;
         align-items: center;
         min-height: 100vh;
-        justify-content: end;
+        justify-content: center;
     }
 
 
@@ -759,11 +756,13 @@
     }
 
     .form-container {
-        background: linear-gradient(to bottom right, #FEFBF4, #C2C2C0) !important;
+        background: #fff !important;
         border-radius: 30px !important;
         padding: 20px;
     }
-
+    .form-select{
+        padding: 10px;
+    }
     .step {
         display: none;
     }
@@ -802,7 +801,7 @@
     }
 
     .progress-step.active {
-        background: #d61e25;
+        background: #03268b;
         color: white;
     }
 
@@ -816,9 +815,9 @@
 
     .form-control {
         border-radius: 8px;
-        color: #666;
+        color: #111 !important;
         height: 44px;
-        font-size: 14px;
+        font-size: 14px !important;
     }
 
     .otp-message {
@@ -859,15 +858,14 @@
 
     .btn-primary-next {
         width: 100%;
-        background: #d61e25;
-        color: #fff;
+        background: rgb(3, 65, 176) !important;
+        color: #fff !important;
         opacity: 1 !important;
-        padding: 16px;
         border-radius: 8px;
     }
 
     .btn-primary-next:hover {
-        background: #b7161b;
+        background: rgb(3, 56, 149) !important;
         color: #fff;
     }
 
@@ -893,7 +891,6 @@
         z-index: 1;
         width: 100%;
         max-width: 500px;
-        padding: 0px 20px;
         margin: auto;
     }
 
@@ -929,7 +926,7 @@
 
     .step h5 {
         color: #333;
-        padding: 10px 0px;
+        padding: 0px;
     }
 
 
@@ -988,16 +985,6 @@
         padding-left: 0;
     }
 
-    @media only screen and (max-width: 576px) {
-        .dxb-bg {
-            background: linear-gradient(to bottom right, #1e3c72, #ff512f) !important;
-        }
-    }
-
-    @media only screen and (min-width: 577px) and (max-width: 991px) {
-        .dxb-bg {
-            background: linear-gradient(to bottom right, #1e3c72, #ff512f) !important;
-        }
-    }
+   
 </style>
 {% endblock %}
