@@ -99,11 +99,11 @@ img {
     height: auto;
 }
 
-hr {
+/* hr {
     margin: 0;
     padding: 0;
     border-color: #000;
-}
+} */
 
 ol {
     counter-reset: counter;

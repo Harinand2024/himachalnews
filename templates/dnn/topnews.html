@@ -58,8 +58,17 @@
             {% for CatVid in videos %}
             <div class="swiper-slide">
               <a href="/video/{{CatVid.slug}}">
-                <img src="https://img.youtube.com/vi/{{CatVid.video_url}}/hqdefault.jpg" alt="{{CatVid.video_title}}"
-                  title="{{CatVid.video_title}}" loading="lazy" width="709" height="363" />
+                <iframe
+                  class="video-iframe"
+                  width="709"
+                  height="363"
+                  src="https://www.youtube.com/embed/{{CatVid.video_url}}?enablejsapi=1&rel=0&showinfo=0&autoplay=0&mute=1"
+                  title="{{CatVid.video_title}}"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen
+                ></iframe>
+
               </a>
               <div class="dxv-overlay">
                 <span class="category">{{ CatVid.News_Category }}</span>
@@ -129,9 +138,7 @@
                             </div>
                              <div class="d-flex align-items-center small  mt-1">
                               <span>{{ Blog.schedule_date|date }} | {{ Blog.schedule_date|time }}</span>
-                              <div class="share-icons-container  mx-2">
-                                {% include 'share.html' with posts=Blog %}
-                              </div>
+                              
                             </div>
                            
                         </div>
@@ -181,6 +188,62 @@
 <!-- jQuery & Slick JS -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+<script src="https://www.youtube.com/iframe_api"></script> <!-- YouTube Iframe API -->
+
+<script>
+  let players = [];
+
+  // This function creates players once the YouTube Iframe API is ready
+  function onYouTubeIframeAPIReady() {
+    const iframes = document.querySelectorAll('.video-iframe');
+    iframes.forEach((iframe, index) => {
+      players[index] = new YT.Player(iframe, {
+        events: {
+          'onReady': onPlayerReady
+        }
+      });
+    });
+  }
+
+  // When a player is ready, pause all but the first, autoplay the first
+  function onPlayerReady(event) {
+    // Pause all videos initially
+    players.forEach(player => player && player.pauseVideo());
+
+    // Autoplay first video (or slide 0) muted
+    if (players[0]) {
+      players[0].mute();
+      players[0].playVideo();
+    }
+  }
+
+  // Initialize Swiper
+  const swiper = new Swiper('.swiper', {
+    loop: true,
+    autoplay: {
+      delay: 8000, // 8 seconds per video slide
+      disableOnInteraction: false,
+    },
+    on: {
+      slideChange: function () {
+        const currentIndex = this.realIndex; // current active slide index
+
+        // Pause all videos
+        players.forEach(player => {
+          if (player && player.pauseVideo) {
+            player.pauseVideo();
+          }
+        });
+
+        // Play current slide video muted
+        if (players[currentIndex]) {
+          players[currentIndex].mute();
+          players[currentIndex].playVideo();
+        }
+      }
+    }
+  });
+</script>
 
 <!-- Initialize Slider -->
 <script>
@@ -198,3 +261,4 @@
     });
   });
 </script>
+
