@@ -8,10 +8,12 @@
           <img src="{{ profile_setting.logo_light.url }}" alt="Logo" class="img-fluid mb-3" style="max-width: 250px;">
         </a>
         <p class="small">
-          Himachal News — The voice of the hills, the heartbeat of Himachal.
-          From Shimla to Spiti, Kullu to Kangra, we bring you bold reporting, ground stories, and cultural narratives from the heart of Himachal Pradesh — and beyond. We also cover national developments that impact the state — in tourism, environment, infrastructure, and governance.
-          Open to collaborations, PR campaigns, and ethical brand partnerships.
-          Himachal News — From the Hills, For the People.
+         हिमाचल न्यूज़ — पहाड़ों की आवाज़, हिमाचल की धड़कन।
+        शिमला से स्पीति, कुल्लू से कांगड़ा तक — हम लाते हैं बेबाक रिपोर्टिंग, ज़मीनी कहानियां और सांस्कृतिक कथाएं, हिमाचल प्रदेश के दिल से — और उससे आगे।
+        हम उन राष्ट्रीय घटनाक्रमों को भी कवर करते हैं जो राज्य को प्रभावित करते हैं — चाहे वह पर्यटन हो, पर्यावरण, अवसंरचना या शासन।
+        हम सहयोग, पीआर कैंपेन और नैतिक ब्रांड साझेदारियों के लिए खुले हैं।
+
+        हिमाचल न्यूज़ — पहाड़ों से, जनता के लिए।
 
 
         </p>
@@ -60,7 +62,7 @@
           <div class="col-lg-5 col-md-12 col-sm-12 mb-3 px-5">
               <div class="widget links-widget vstack gap-3">
                 <div class="widgt-title">
-                  <h3 class="fs-5 text-left m-0 text-white">ARTICLES</h3>
+                  <h3 class="fs-5 text-left m-0 text-white">अनुच्छेद</h3>
                 </div>
 
                 <!-- Reduce gutter (gap) -->
@@ -82,12 +84,12 @@
 
       <!-- Quick Links -->
       <div class="col-lg-3 col-md-12 mb-4">
-        <h5 class="text-uppercase">Quick Links</h5>
+        <h5 class="text-uppercase">महत्वपूर्ण लिंक</h5>
         <ul class="list-unstyled small">
           {% for page in pages %}
           <li><a href="{% url 'cms' page.slug %}" class="text-white text-decoration-none">{{ page.pagename }}</a></li>
           {% endfor %}
-          <li><a href="{% url 'sitemap' %}" class="text-white text-decoration-none">Sitemap</a></li>
+          <li><a href="{% url 'sitemap' %}" class="text-white text-decoration-none">साइट मानचित्र</a></li>
         </ul>
       </div>
 

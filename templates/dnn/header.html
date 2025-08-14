@@ -1,9 +1,9 @@
 {% load static %}
 <div class="container  m-0 p-0 " style="max-width: 100%;">
      <!-- Breaking News Ticker -->
-      <div class="breaking-news small bg-dark text-white d-flex align-items-center" style="height: 40px;">
+      <!-- <div class="breaking-news small bg-dark text-white d-flex align-items-center" style="height: 40px;">
         <div class="breaking-label text-white px-3 py-2 fw-bold">
-          Breaking News
+          ताज़ा खबर
         </div>
         <marquee behavior="scroll" direction="left" scrollamount="5" class="px-3">
          {% for CatVid in videos|slice:":2" %}
@@ -12,7 +12,7 @@
             </a>
             {% endfor %}
         </marquee>
-      </div>
+      </div> -->
     <!-- top nav end -->
     <div class="container m-auto row header my-2">
         <div class="col-lg-4 col-md-4 col-sm-12 row-content">
@@ -57,7 +57,7 @@
               {% else %}
                 <li>
                   <a href="{% url 'sign-in' %}" class="btn btn-danger login-btn">
-                    Login
+                    लॉग इन करें
                   </a>
                 </li>
               {% endif %}
@@ -69,7 +69,7 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="ModalSearchLabel">Search</h5>
+                            <h5 class="modal-title" id="ModalSearchLabel">खोजें</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
                                 style="color: #d91c1c; font-weight: bold; background-color: transparent; border: none; width: 40px; height: 40px; padding: 0px;">
                             </button>
@@ -79,7 +79,7 @@
                                 <input type="text" name="title" class="form-control" placeholder="Search for posts..."
                                     required>
                                 <button type="submit" class="btn btn-primary mt-3 w-100"
-                                    style="background-color: #d91c1c; border: none;">Search</button>
+                                    style="background-color: #d91c1c; border: none;">खोजें</button>
                             </form>
                         </div>
                     </div>
