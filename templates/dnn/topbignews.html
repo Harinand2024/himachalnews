@@ -28,9 +28,11 @@
      <div class="text-center">
         <div class="top-heading">आज के बड़े घटनाक्रम</div>
     </div>
-    <h2 class="text-center fw-bold mb-4">
-        'आवारा कुत्तों की समस्या अधिकारियों की निष्क्रियता के कारण', सुप्रीम कोर्ट ने सुरक्षित रखा फैसला
-    </h2>
+    {% for news in bnews|slice:":1" %}
+            <a class="h2 text-decoration-none text-center py-3" href="/{{ news.slug }}">
+                {{ news.post_title|truncatechars:180 }}
+              </a>
+     {% endfor %}
     <div class="col-lg-6 col-md-12 col-sm-12 mb-3 row-p-0">     
      <div class="mb-3">
             <div class="section-title">मौसम</div>

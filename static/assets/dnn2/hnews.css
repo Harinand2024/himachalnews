@@ -62,12 +62,12 @@ body {
   background: #000 !important;
 }
 .news-card {
-  display: flex;
   gap: 10px;
   background: #e9fafa;
   padding: 10px;
   border-radius: 6px;
   margin-bottom: 15px;
+  border: none;
 }
 
 .news-card2 {
