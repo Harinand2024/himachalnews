@@ -2,7 +2,7 @@
 {% block body %}
 {% load static %}
 
-<div class="dxb-container ">
+<div class="container mt-4">
     <h2 class="border-b mb-3 text-uppercase font-weight-bold text-center">{{ sslug }}</h2>
     <div class="row">
 
@@ -11,8 +11,9 @@
 
             {% comment %} ------video-podcast-news-start------- {% endcomment %}
             {% if vidnews != null %}
-            <div class="section-title-podcast">
-                <h4 class="m-0 text-uppercase font-weight-bold">News &amp; Podcasts</h4>
+            <div class="mx-2">
+                <div class="section-title">ख़बरें और पॉडकास्ट</div>
+                <div class="double-underline"></div>
             </div>
             {% endif %}
             {% comment %} ------video-podcast-news-end------- {% endcomment %}
@@ -21,38 +22,40 @@
                     <div class="row">
                         {% for vidpost in vidnews %}
                         <div class="col-lg-4 colo-md-6 colo-sm-12">
-                            <div class="position-relative mb-3 mt-3">
-                                <img class="img-fluid w-100 sliderimg mb-2" style="border-radius: 4px;"
-                                    src="https://img.youtube.com/vi/{{vidpost.video_url}}/mqdefault.jpg"></a>
-                                <div class="py-2 mb-3 border-bottom">
-                                    <a class="text-body" href="">
-                                        <small><i class="fas fa-calendar-alt"></i>
-                                            {{vidpost.schedule_date|date}}</small>
-                                        <small class="ml-3"> <i class="fas fa-clock"></i> {{ vidpost.schedule_date|time }}</small>
+                            <div class="position-relative mt-3">
+                                <a href="/video/{{vidpost.slug}}">
+                                    <img  style="border-radius: 4px 4px 0px 0px; width: 100%; height: 200px;"
+                                        src="https://img.youtube.com/vi/{{vidpost.video_url}}/mqdefault.jpg">
+                                    
+                                    <span class="playbut" style="top: 25%;">
+                                        <i class="fa fa-play-circle"></i>
+                                    </span>
+                                </a>
+                                <div class="p-3 card-background">                                    
+                                    <p>
+                                    <small><i class="fas fa-calendar-alt"></i> {{vidpost.schedule_date|date}}</small>
+                                    <small class="ml-3"> <i class="fas fa-clock"></i> {{ vidpost.schedule_date|time }}</small>
+                                    </p>
+                                   
+                                    <a  href="/video/{{vidpost.slug}}">
+                                        <p>{{vidpost.video_title|slice:":60"|safe}}...</p>
+                                        <p class="small">{{vidpost.video_short_des|slice:":150"|safe}}...</p>
                                     </a>
                                 </div>
-                                <a class="videopost-title" href="/video/{{vidpost.slug}}">
-                                    <p style="height: 82px; overflow: hidden;">{{vidpost.video_title}}</p>
-                                    <p class="playbut"><i class="fa fa-play-circle" aria-hidden="true"></i></p>
-
-                                    <div class="">
-                                        <p style="height:82px; overflow: hidden;">
-                                            {{vidpost.video_short_des|slice:":270"|safe}}
-                                        </p>
-                                        <div class="mb-2">
-                                            <a class="readmore" href="/video/{{vidpost.slug}}">Read More</a>
-                                        </div>
-                                    </div>
-                                </a>
+                                
                             </div>
                         </div>
+
                         {% endfor %}
                         {% for Blog in BlogData %}
-                        <div class="col-lg-4 colo-md-6 colo-sm-12">
+                        <div class="col-lg-4 colo-md-6 colo-sm-12 mt-4">
+                            <a href="/{{Blog.slug}}">
+                                 <img class="" src="../upload/{{Blog.post_image}}" alt="">
+                            </a>
                             <div class="news-card mb-3">
-                                <img class="img-fluid tranimg news-image" src="../upload/{{Blog.post_image}}" alt="">
+                                
                                 <a class="news-title" href="/{{Blog.slug}}">
-                                    <p>{{Blog.post_title}}</p>
+                                    <p>{{Blog.post_title|slice:":60"|safe}}</p>
                                 </a>
                                 <a href="/{{Blog.slug}}" class="news-description">
                                     <p>{{Blog.post_short_des|slice:":100"|safe}}</p>
@@ -60,8 +63,8 @@
 
                                 <div class="d-flex align-items-center px-2 my-1 mb-1 news-meta">
                                     <small><i class="fas fa-calendar-alt"></i> {{Blog.schedule_date|date}}</small>
-                                    <small class="ml-3"><i class="fas fa-clock"></i> {{ Blog.schedule_date|time }}</small>
-                                    <small class="ml-3"><i class="far fa-eye mr-2"></i>{{Blog.post_status|add:Blog.viewcounter}}</small>
+                                    <small class=""><i class="fas fa-clock"></i> {{ Blog.schedule_date|time }}</small>
+                                    <small class=""><i class="far fa-eye mr-2"></i>{{Blog.post_status|add:Blog.viewcounter}}</small>
                                     <div style="--custom-bottom: 0px; --custom-right: 0px;">
                                             {% include 'share.html' with posts=Blog %}
                                     </div>
@@ -97,8 +100,7 @@
                 <a href=""><img class="img-fluid w-100" src="../upload/{{adledb.ad_image}}" alt=""></a>
                 {% endfor %}
             </div>
-            <h1 style="font-size: 17px;" class="text-center">DXB News Network: Dubai National and Global News Channel |
-                UAE.</h1>
+            
 
         </div>
         <div class="col-lg-3 col-md-4 col-sm-12">
@@ -109,54 +111,5 @@
 
     </div>
 </div>
-<!-- Featured News Slider Start -->
-{% include "bp-logo.html" %}
-{% comment %} {% include "news-slider-bottam.html" %} {% endcomment %}
-<!-- Featured News Slider End -->
-<!-- Button trigger modal -->
-<!-- Modal -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-    aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content ">
-            <div class="container" style=padding:0px;>
 
-                <div class="row">
-                    <div class="col-lg-4">
-                        <img src="{% static 'assets/img/newsletter.png' %}" alt="" style="width:200px;">
-                    </div>
-                    <div class="col-lg-8">
-                        <p class="pt-3 pr-3">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </p>
-                        <div class="modal-body">
-                            {% if form.non_field_errors %}
-                            <small class="text-danger">{{ form.non_field_errors.as_ul}}</small>
-                            {% endif %}
-                            <h2 class="text-center">Subscribe</h2>
-                            <form action="{% url 'UserSubscriber' %}" method="post">
-                                {% csrf_token %}
-                                <div class="form-group pl-4">
-                                    <input type="text" name="fname" class="form-control p-4" placeholder="Your Name"
-                                        required="required">
-                                </div>
-                                <div class="form-group  pl-4">
-                                    <input type="email" name="email" class="form-control p-4" placeholder="Your Email"
-                                        required="required">
-                                </div>
-
-                                <div class="text-center">
-                                    <input type="submit" value="Submit" class="btn btn-secondary">
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-</div>
 {% endblock %}

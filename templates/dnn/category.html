@@ -18,15 +18,15 @@
             </div>
             <div class="row">
                 <div class="col-lg-3">
-                    {% for Blog in BlogData|slice:"2:6" %}
+                    {% for Blog in BlogData|slice:"0:3" %}
                     <article class="post-block-style-wrapper post-block-template-one post-block-template-small">
                         <div class="post-block-style-inner">
-                            <div class="post-block-media-wrap">
+                            <div class="post-block-media-wrap m-0">
                                 <a href="/{{ Blog.slug }}">
                                     <img src="{{ Blog.post_image.url }}" alt="{{ Blog.post_title }}" title="{{ Blog.post_title }}" loading="lazy">
                                 </a>
                             </div>
-                            <div class="post-block-content-wrap">
+                            <div class="card-background p-3">
                                 <div class="post-item-title">
                                     <h2 class="post-title">
                                         <a href="/{{ Blog.slug }}">{{ Blog.post_title|truncatechars:80 }}</a>
@@ -57,15 +57,15 @@
                     {% endfor %}
                 </div>
                 <div class="col-lg-5">
-                    {% for Blog in BlogData|slice:":2" %}
+                    {% for Blog in BlogData|slice:"3:5" %}
                     <article class="post-block-style-wrapper post-block-template-one sm-mt-24">
                         <div class="post-block-style-inner">
-                            <div class="post-block-media-wrap">
+                            <div class="post-block-media-wrap m-0">
                                 <a href="/{{ Blog.slug }}">
                                     <img src="{{ Blog.post_image.url }}" alt="{{ Blog.post_title }}" title="{{ Blog.post_title }}" loading="lazy">
                                 </a>
                             </div>
-                            <div class="post-block-content-wrap">
+                            <div class="card-background p-3">
                                 <div class="post-item-title">
                                     <h2 class="post-title">
                                         <a href="/{{ Blog.slug }}">{{ Blog.post_title|truncatechars:90 }}</a>
@@ -99,12 +99,12 @@
                     {% endfor %}
                 </div>
                 <div class="col-lg-4">
-                    {% for Blog in BlogData|slice:"6:12" %}
+                    {% for Blog in BlogData|slice:"5:12" %}
                     <article class="post-block-style-wrapper post-block-template-two">
-                        <div class="post-block-style-inner post-block-list-style-inner">
+                        <div class="post-block-style-inner post-block-list-style-inner card-background p-2">
                             <div class="post-block-media-wrap">
                                 <a href="/{{ Blog.slug }}">
-                                    <img src="{{ Blog.post_image.url }}" alt="{{ Blog.post_title }}" title="{{ Blog.post_title }}" loading="lazy">
+                                    <img src="{{ Blog.post_image.url }}" alt="{{ Blog.post_title }}" title="{{ Blog.post_title }}" loading="lazy" style="height: auto;">
                                 </a>
                             </div>
                             <div class="post-block-content-wrap">
@@ -136,7 +136,7 @@
                         </div>
                     </article>
                     {% endfor %}
-                    <div class="ads-widget mt-40">
+                    <!-- <div class="ads-widget mt-40">
                         <div style=" height: 487px;" class="col-lg-12">
                             <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5922835412614482"
                               crossorigin="anonymous"></script>
@@ -146,7 +146,7 @@
                               (adsbygoogle = window.adsbygoogle || []).push({});
                             </script>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
             <div class="row">
@@ -188,23 +188,23 @@
     {% endif %}
 
     {% if latestnews %}
-    <section class="articles-grid-section mt-4">
+    <section class="articles-grid-section my-5">
         <div class="container">
             <div class="mb-3">
                 <div class="section-title">ताज़ा खबरें</div>
                 <div class="double-underline"></div>
             </div>
             <div class="row">
-                {% for Blog in latestnews|slice:":3"%}
+                {% for Blog in latestnews|slice:":4"%}
                 <div class="col-lg-3">
                     <div class="post-block-style-wrapper post-block-template-one post-block-template-small">
                         <div class="post-block-style-inner">
-                            <div class="post-block-media-wrap">
+                            <div class="post-block-media-wrap m-0">
                                 <a href="/{{ Blog.slug }}">
                                     <img src="{{ Blog.post_image.url }}" alt="{{ Blog.post_title }}" title="{{ Blog.post_title }}" loading="lazy">
                                 </a>
                             </div>
-                            <div class="post-block-content-wrap">
+                            <div class="card-background p-3">
                                 <div class="post-item-title">
                                     <h2 class="post-title">
                                         <a href="/{{ Blog.slug }}">{{ Blog.post_title|truncatechars:55 }}</a>
@@ -234,7 +234,7 @@
                     </div>
                 </div>
                 {% endfor %}
-                <div class="col-lg-3">
+                <!-- <div class="col-lg-3">
                     <div class="newsletter-box-wrapper">
                         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5922835412614482"
                             crossorigin="anonymous"></script>
@@ -244,14 +244,14 @@
                             (adsbygoogle = window.adsbygoogle || []).push({});
                         </script>
                     </div>
-                </div>
+                </div> -->
             </div>      
         </div>
     </section>
     {% endif %}
 
     {% if headline %}
-    <div class="section-divider mt-60 mb-60"></div>
+    
 
     <!-- <section class="editor-choice-one-area">
         <div class="container">
@@ -385,7 +385,7 @@
     </section> -->
     {% endif %}
 
-    <section class="ads-area mt-70 mb-60">
+    <!-- <section class="ads-area mt-70 mb-60">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -404,7 +404,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
 
     {% if trendpost %}
     <section class="editor-choice-two-area">
@@ -418,6 +418,11 @@
                     {% for Blog in trendpost|slice:":3" %}
                     <div class="post-block-style-wrapper post-block-template-four my-3">
                         <div class="post-block-style-inner post-block-list-style-inner">
+                            <div class="post-block-media-wrap">
+                                <a href="/{{ Blog.slug }}">
+                                    <img src="{{ Blog.post_image.url }}" alt="{{ Blog.post_title }}" title="{{ Blog.post_title }}" loading="lazy">
+                                </a>
+                            </div>
                             <div class="post-block-content-wrap">
                                 <div class="post-item-title">
                                     <h2 class="post-title">
@@ -447,11 +452,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="post-block-media-wrap">
-                                <a href="/{{ Blog.slug }}">
-                                    <img src="{{ Blog.post_image.url }}" alt="{{ Blog.post_title }}" title="{{ Blog.post_title }}" loading="lazy">
-                                </a>
-                            </div>
+                            
                         </div>
                     </div>
                     {% endfor %}
@@ -541,7 +542,7 @@
     {% endif %}
 
     {% if breakingnews %}
-    <div class="section-divider mt-60 mb-60"></div>
+
 
     <!-- <section class="most-popular-area mt-60">
         <div class="container">
@@ -864,8 +865,8 @@
                 <div class="double-underline"></div>
             </div>
             <div class="row">
-                {% for Blog in Articale|slice:":5"%}
-                <div class="col-lg-4">
+                {% for Blog in Articale|slice:":6"%}
+                <div class="col-lg-3">
                     <article class="post-block-style-wrapper post-block-template-one post-block-template-medium mb-40">
                         <div class="post-block-style-inner">
                             <div class="post-block-media-wrap">
@@ -906,7 +907,7 @@
                     </article>
                 </div>
                 {% endfor %}
-                <div class="col-lg-4">
+                <!-- <div class="col-lg-4">
                     <div class="col-lg-12 col-md-12">
                         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5922835412614482"
                             crossorigin="anonymous"></script>
@@ -916,7 +917,7 @@
                             (adsbygoogle = window.adsbygoogle || []).push({});
                         </script>
                     </div>
-                </div>
+                </div> -->
             </div>
             <div class="row">
                 <div class="col-lg-12">
@@ -952,7 +953,7 @@
         </div>
     </section>
 
-    <div class="section-divider mt-60 mb-60"></div>
+    
     {% endif %}
 </div>
 
@@ -969,6 +970,7 @@
         overflow: hidden;
         width: 100%;
         object-fit: contain;
+        height: auto !important;
     }
     .post-title {
         font-size: 16px !important;

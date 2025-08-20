@@ -94,7 +94,6 @@ button:hover {
   padding: 2px;
   margin: 0px;
   font-size: 15px;
-  font-family: 'Inter', sans-serif;
   letter-spacing: 0.5px;
 }
 .bg-dxb {
@@ -105,7 +104,6 @@ button:hover {
 .artical-box{
     font-size: 20px;
     font-weight: 500;
-    font-family: 'EB Garamond', serif;
     margin-bottom: 57px;
 }
 .articale-text{
@@ -116,7 +114,6 @@ button:hover {
   color: rgb(32, 34, 36) !important;
   text-rendering: optimizeLegibility;
   letter-spacing: initial;
-  font-family: 'EB Garamond', serif;
 }
 .badge{
   font-weight: normal;
@@ -127,7 +124,6 @@ button:hover {
   margin-bottom: 20px;
 }
 .videopost-title{
-  font-family: 'EB Garamond', serif;
   font-weight: 500;
   font-size: 20px;
   line-height: 26px;
@@ -141,7 +137,6 @@ button:hover {
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
     font-size: 28px !important;
     font-weight: 500;
-    font-family: 'EB Garamond', serif;  
     text-align: left !important;
     line-height: 26px;
 }
@@ -173,7 +168,6 @@ a {
  
   color: #ffffff !important;
   min-width: 20rem;
-  font-family: 'Montserrat', sans-serif;
   text-transform: uppercase;
   font-size: 13px;
   letter-spacing: 0.5px;
@@ -186,13 +180,7 @@ a {
   color: #ffffff !important;
 }
 
-/* body {
-  font-family: 'roboto' sans-serif;
-  margin: 0 !important;
-  padding: 0 !important;
-  background: #ffffff !important;
-  color: #191821 !important;
-} */
+
 .card {
   background-color: var(--background-color) !important;
 }
@@ -280,7 +268,6 @@ body.dark-mode .logo-dark {
 .top_search_section-text {
   font-size: 16px;
   padding: 0px 5px;
-  font-family: roboto;
 }
 
 .calender {
@@ -318,7 +305,6 @@ body.dark-mode .logo-dark {
   padding-left: 0px !important;
   text-transform: uppercase;
   font-size: 14px;
-  font-family: 'Montserrat', sans-serif;
   letter-spacing: 0.5px;
   padding-right: 0px !important;
 }
@@ -337,7 +323,6 @@ body.dark-mode .logo-dark {
 
 .navbar-light .navbar-nav .nav-link {
   font-size: 16px;
-  font-family: roboto;
   color: var(--text-color) !important;
 }
 
@@ -352,17 +337,7 @@ body.dark-mode .logo-dark {
   color: #c43232 !important;
 }
 
-/* .navbar-light .navbar-nav .active>.nav-link,
-.navbar-light .navbar-nav .nav-link.active,
-.navbar-light .navbar-nav .nav-link.show,
-.navbar-light .navbar-nav .show>.nav-link {
-  width: 10px;
-  height: 10px;
-  background: #4E89C3;
-  border-radius: 20px;
-  position: absolute;
-  margin: 0px 16px;
-} */
+
 .navbar-2 {
   border: 1px solid #f5f5f5;
 }
@@ -384,7 +359,6 @@ body.dark-mode .logo-dark {
 
 .nav2-text {
   font-size: 14px !important;
-  font-family: roboto !important;
 }
 
 .news-heading {
@@ -483,7 +457,6 @@ body.dark-mode .logo-dark {
   left: 20px;
   border-radius: 4px;
   font-size: 12px;
-  font-family: roboto;
   padding: 2px 5px;
 }
 
@@ -599,27 +572,7 @@ body.dark-mode .logo-dark {
   list-style: none;
 }
 
-/* .image-container {
-  background-image: url('../images/flight.png');
-  height: 330px;
-  background-size: cover; 
-  background-position: center; 
-  background-repeat: no-repeat; 
-}
-.image-container1 {
-  background-image: url('../images/prayer.png');
-  height: 330px;
-  background-size: cover; 
-  background-position: center; 
-  background-repeat: no-repeat; 
-}
-.image-container2 {
-  background-image: url('../images/weather.png');
-  height: 330px;
-  background-size: cover; 
-  background-position: center; 
-  background-repeat: no-repeat; 
-} */
+
 .footer {
   background-size: cover;
   background-position: center;
@@ -926,7 +879,6 @@ a.text-light:hover {
 }
 
 h1.news-heading {
-  font-family: "Bellefair", serif;
   color: white;
   text-transform: uppercase;
 }
@@ -1372,8 +1324,24 @@ a.text-white:hover {
 
 .playbut{
   position: absolute;
-  top: 16%;
-  left: 43%;
-  color: red;
-  font-size: 50px;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  border-radius: 50%;
+  padding: 10px;
+  font-size: 24px;
+  transition: all 0.3s ease;
+  width: 50px;
+  height: 50px;
+  background: #00000099;
+  padding: 11px 13px;
+  
+}
+.playbut:hover{
+  background: rgba(255, 0, 0, 0.8);
+  box-shadow: 0 0 15px rgba(255, 0, 0, 0.8);
+  transform: translate(-50%, -50%) scale(1.1);
+  z-index: 100;
+  padding: 11px 13px;
 }

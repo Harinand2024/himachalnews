@@ -12,16 +12,16 @@
         {% endfor %}
     </div>
 </div>
-<div class="my-1" >
+<!-- <div class="my-1" >
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5922835412614482"
         crossorigin="anonymous"></script>
-    <!-- News Page SQ Sidebar -->
+    
     <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5922835412614482" data-ad-slot="2309629217"
         data-ad-format="auto" data-full-width-responsive="true"></ins>
     <script>
         (adsbygoogle = window.adsbygoogle || []).push({});
     </script>
-</div>
+</div> -->
 
 
 <div class="mb-3 ">
@@ -30,12 +30,12 @@
           <div class="double-underline"></div>
         </div>
     
-    <div class=" mb-3">
+    <div class="">
         {% for trendingpost in trendpost %}
+        <a  href="/{{trendingpost.slug}}"><img class="" src="../upload/{{trendingpost.post_image}}" alt=""></a>
         <div class="news-card mb-3">
-            <img class="img-fluid tranimg news-image" src="../upload/{{trendingpost.post_image}}" alt="">
             <a class="news-title" href="/{{trendingpost.slug}}">
-                <p>{{trendingpost.post_title}}</p>
+                <p>{{trendingpost.post_title|slice:":60"|safe}}...</p>
             </a>
             <a href="/{{trendingpost.slug}}" class="news-description">
                 <p>{{trendingpost.post_short_des|slice:":100"|safe}}</p>
@@ -43,24 +43,24 @@
 
             <div class="d-flex align-items-center px-2 my-1 mb-1 news-meta">
                 <small><i class="fas fa-calendar-alt"></i> {{trendingpost.schedule_date|date}}</small>
-                <small class="ml-3"><i class="fas fa-clock"></i> {{ trendingpost.schedule_date|time }}</small>
-                <small class="ml-3"><i class="far fa-eye mr-2"></i>{{trendingpost.post_status|add:trendingpost.viewcounter}}</small>
+                <small ><i class="fas fa-clock"></i> {{ trendingpost.schedule_date|time }}</small>
+                <small ><i class="far fa-eye mr-2"></i>{{trendingpost.post_status|add:trendingpost.viewcounter}}</small>
                 <div style="--custom-bottom: 0px; --custom-right: 0px;">
                         {% include 'share.html' with posts=trendingpost %}
                 </div>
             </div>
         </div>
-        <div class="my-1" >
+        <!-- <div class="my-1" >
             <script async
                 src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5922835412614482"
                 crossorigin="anonymous"></script>
-            <!-- News Page SQ Sidebar -->
+            
             <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5922835412614482"
                 data-ad-slot="2309629217" data-ad-format="auto" data-full-width-responsive="true"></ins>
             <script>
                 (adsbygoogle = window.adsbygoogle || []).push({});
             </script>
-        </div>
+        </div> -->
         {% endfor %}
     </div>
 </div>
@@ -96,22 +96,18 @@
         margin-bottom: 8px;
         line-height: 1.5;
         font-weight: 600;
-        font-family: 'EB Garamond', serif;
+        
 
     }
 
     .news-description {
-        font-size: 20px;
-        color: #666 !important;
         line-height: 1.4;
-        font-family: 'EB Garamond', serif;
+        
     }
 
     .news-meta {
         display: flex;
         justify-content: space-between;
-        font-size: 1rem;
-        color: #666;
         padding: 10px 15px;
         border-top: 1px solid #eee;
     }
