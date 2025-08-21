@@ -1124,83 +1124,7 @@ a.text-light:hover {
 
 /* updated css by hari 14/05/2025 */
 
-.singup-content {
-  position: relative;
-  z-index: 1;
-  /* Content appears above the video */
-  display: flex;
-}
 
-.dxb-bg {
-  background-size: cover;
-  background-attachment: fixed;
-  align-items: center;
-  min-height: 100vh;
-  justify-content: end;
-}
-
-.sighnup-logo {
-  text-align: center;
-}
-
-.form-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.login-container,
-.reset-container {
-  background: linear-gradient(to bottom right, #fefbf4, #c2c2c0) !important;
-  border-radius: 30px !important;
-  padding: 16px;
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
-  width: 350px;
-}
-
-.form-control {
-  border-radius: 8px;
-  color: #666;
-  height: 44px;
-  font-size: 14px;
-}
-
-.btn-login,
-.btn-reset {
-  width: 100%;
-  background: #d61e25;
-  color: #fff;
-  opacity: 1 !important;
-  padding: 16px;
-  border-radius: 8px;
-}
-
-.btn-login:hover,
-.btn-reset:hover {
-  background: #b7161b;
-  color: #fff;
-}
-
-.forgot-password {
-  color: #d61e25 !important;
-  font-size: 14px;
-  margin-top: 10px;
-  display: block;
-  text-decoration: none;
-  cursor: pointer;
-  text-align: center;
-}
-
-.forgot-password:hover {
-  text-decoration: underline;
-}
-
-.sgignup-head {
-  color: #000;
-  margin: 10px;
-  font-weight: 600;
-  font-size: 36px;
-}
 
 /* Responsive - Tablets */
 @media screen and (max-width: 1024px) {
@@ -1568,7 +1492,7 @@ a.text-light:hover {
 }
 
 .form-container {
-  background: linear-gradient(to bottom right, #fefbf4, #c2c2c0) !important;
+  background:#fff !important;
   border-radius: 30px !important;
   padding: 20px;
   width: 450px !important;
