@@ -1,3 +1,4 @@
+{% load i18n %}
 {% load static %}
 <div class="container  m-0 p-0 " style="max-width: 100%;">
   <!-- Breaking News Ticker -->
@@ -58,6 +59,13 @@
             लॉग इन करें
           </a>
         </li>
+        
+        <div class="language-button-wrapper">
+            <i class="bi bi-translate" style="font-size:20px; margin-right:5px;"></i>
+            <span>English</span>
+            <i class="bi bi-chevron-down" style="margin-left:5px;"></i>
+            <div id="google_translate_element"></div>
+          </div>
         {% endif %}
       </ul>
     </div>
@@ -79,13 +87,13 @@
             {% for link in Blogcat %}
             <div class="nav-item dropdown">
               <a href="#" class="nav-link dropdown-toggle text-white" data-bs-toggle="dropdown">
-                {{ link.cat_name }}
+                {% trans link.cat_name %}
               </a>
               <div class="dropdown-menu rounded-0 m-0">
                 {% for sublink in link.sub_category_set.all|dictsort:"subcat_status" %}
                 {% if sublink.subcat_status == 'active' %}
                 <a href="/{{ link.cat_slug }}/{{ sublink.subcat_slug }}" class="dropdown-item">
-                  {{ sublink.subcat_name }}
+                   {% trans sublink.subcat_name %}
                 </a>
                 {% endif %}
                 {% endfor %}
@@ -196,7 +204,46 @@
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+<!-- Load Google Translate API -->
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
+<script>
+  function applyCustomTranslateStyles() {
+  const combo = document.querySelector('.goog-te-combo');
+  if (combo) {
+    combo.style.backgroundColor = 'black';
+    combo.style.color = 'white';
+    combo.style.border = '1px solid #444';
+    combo.style.padding = '16px';
+    combo.style.borderRadius = '6px';
+  }
+}
+
+// Wait for the widget to load
+setTimeout(applyCustomTranslateStyles, 1000);
+  function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+      pageLanguage: 'en',
+      includedLanguages: 'en,hi,pa',
+      layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL,
+      autoDisplay: false
+    }, 'google_translate_element');
+  }
+
+  function hideTranslateBanner() {
+    const elements = document.querySelectorAll(".VIpgJd-ZVi9od-ORHb-OEVmcd.skiptranslate");
+    elements.forEach(el => {
+      el.style.display = "none";
+    });
+  }
+
+  // Run once on load
+  hideTranslateBanner();
+
+  // Watch for future changes (Google injects banner after load)
+  const observer = new MutationObserver(hideTranslateBanner);
+  observer.observe(document.body, { childList: true, subtree: true });
+</script>
 <script>
   window.addEventListener("scroll", function () {
     var stickyNav = document.getElementById("stickyNav");
@@ -238,6 +285,79 @@
 </script>
 
 <style>
+   .language-button-wrapper {
+        position: relative;
+        display: inline-block;
+        background-color: #222;
+        color: white;
+        padding: 6px 15px 2px;
+        border-radius: 5px;
+        font-size: 14px;
+        font-weight: 500;
+        cursor: pointer;
+        overflow: hidden;
+        margin:10px;
+    }
+    #google_translate_element {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+    }
+
+     #google_translate_element_sticky{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+    }
+
+    #google_translate_element select {
+        width: 100%;
+        height: 100%;
+        cursor: pointer;
+    }
+     #google_translate_element_sticky select {
+        width: 100%;
+        height: 100%;
+        cursor: pointer;
+    } 
+  .language-button-wrapper img {
+    height: 16px;
+    width: 16px;
+    color:white !important;
+   }
+
+
+  /* Hide ANY Google Translate banner iframe */
+
+  .goog-te-banner-frame.skiptranslate {
+      display: none !important;
+  } 
+
+  body {
+      top: 0px !important;  /* reset body position */
+  }
+  /* Style the dropdown container */
+.goog-te-combo {
+  background-color: black !important;
+  color: white !important;
+  border: 1px solid #444 !important;
+  padding: 16px !important;
+  border-radius: 6px;
+  font-family: Arial, sans-serif;
+  width: 100% !important;
+}
+
+/* Optional: Style the dropdown arrow */
+.goog-te-combo option {
+  background-color: black;
+  color: white;
+}
   .theme-toggle {
     display: flex;
     align-items: center;

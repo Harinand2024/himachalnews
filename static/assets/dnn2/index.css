@@ -1124,8 +1124,6 @@ a.text-light:hover {
 
 /* updated css by hari 14/05/2025 */
 
-
-
 /* Responsive - Tablets */
 @media screen and (max-width: 1024px) {
   /* Top News Banner */
@@ -1492,7 +1490,7 @@ a.text-light:hover {
 }
 
 .form-container {
-  background:#fff !important;
+  background: #fff !important;
   border-radius: 30px !important;
   padding: 20px;
   width: 450px !important;

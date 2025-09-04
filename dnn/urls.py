@@ -19,15 +19,17 @@ from django.urls import path, include
 from dnn import views
 from django.conf import settings
 from django.conf.urls.static import static
+from django.conf.urls.i18n import i18n_patterns
 #from dnn.sitemap import BlogSitemap,StaticSitemap
 #from django.contrib.sitemaps.views import sitemap
 from django.views.generic.base import TemplateView
-
+from . import views
 #sitmap start
-from django.conf.urls.static import static
+
 from django.contrib.sitemaps.views import sitemap
 from dnn.sitemaps import custom_sitemap_index, sitemap_news, sitemap_images, sitemap_images_by_month, sitemap_videos, sitemap_videos_by_month, sitemap_article, sitemap_article_by_month, sitemap_archive, sitemap_archive_by_month
 #sitmap end
+
 
 admin.site.site_header="DNN Admin"
 admin.site.site_title="DNN Admin"
@@ -37,8 +39,15 @@ admin.site.index_title="Dasboard"
 #      'post':BlogSitemap,
 #      'StaticUrl':StaticSitemap
 #    }
-
 urlpatterns = [
+    path('i18n/', include('django.conf.urls.i18n')), 
+    path('adminview/', admin.site.urls),
+    path('ckeditor/', include('ckeditor_uploader.urls')),
+    
+]
+
+urlpatterns += i18n_patterns(
+    path('admin/', admin.site.urls),
     path('', views.home, name="home"),
     path('auth/', include('journalist.urls')),
     path('topic/<slug:slug>', views.posts_by_tag, name='posts_by_tag'),
@@ -61,16 +70,14 @@ urlpatterns = [
     path('voices-of-uae', views.voicesofuae, name='voices-of-uae'),
     path('cms<slug:slug>/', views.cms_detail, name='cms'),
     path('setting', views.Settings, name='setting'),
-    
-    #path('sitemap.xml',sitemap,{'sitemaps':sitemaps},name='django.contrib.sitemaps.views.sitemap'),
-    # path("robots.txt",TemplateView.as_view(template_name="robots.txt", content_type="text/plain"),),
     path("robots.txt", views.robots_txt, name="robots_txt"),
     path(
         "ads.txt",
         TemplateView.as_view(template_name="ads.txt", content_type="text/plain"),
     ),
+
     
-    #sitmap start
+    # --- sitemap urls ---
     path('sitemap', custom_sitemap_index, name='sitemap'),
     path('sitemap/news', sitemap_news, name='sitemap-news'),
     path('sitemap/images', sitemap_images, name='sitemap-images'),
@@ -82,7 +89,7 @@ urlpatterns = [
     path('sitemap/archive', sitemap_archive, name='sitemap-archive'),
     path('sitemap/archive/<int:year>/<int:month>/', sitemap_archive_by_month, name='sitemap-archive-by-month'),
     #sitmap end
-    #admin-user-pannel-path
+    # admin-user-panel
     path('user-dashboard', views.Userdashboard, name="user-dashboard"),
     path('managepost', views.ManagePost, name="managepost"),
     path('guest-news-post', views.Guestpost, name="guest-news-post"),
@@ -93,13 +100,14 @@ urlpatterns = [
     path('edit-news-post/<int:post_id>', views.EditNewsPost, name="edit-news-post"),
     path('update-post', views.UpdateNewsPost, name="update-post"),
     
-    #dynemic-path---
+    # dynamic-paths
     path('<slug>', views.newsdetails, name="newsdetails"),
     path('all-news/<slug>', views.AllNews, name="all-news"),
     path('all-video-news/<slug>', views.AllvideoNews, name="all-video-news"),
     path('video/<slug>', views.videonewsdetails, name="videonewsdetails"),
     path('<str:catlink>/<slug>', views.catdetails, name="catdetails"),
     path('events/<slug>', views.eventdetails, name="eventdetails"),
+)
     #dynemic-path-end
     
     #path('logincheck', views.Logincheck, name="logincheck"),
@@ -108,9 +116,7 @@ urlpatterns = [
     #path('video/<slug>', views.videocategory, name="videocategory"),
     # path('<data>', views.pagename),
     
-    path('adminview/', admin.site.urls),
-    path('ckeditor/', include('ckeditor_uploader.urls'))
-]
+   
 
 if settings.DEBUG:
     urlpatterns+=static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

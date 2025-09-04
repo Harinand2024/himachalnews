@@ -87,11 +87,11 @@
                                                             data-dial="{{ country.dial_code }}"
                                                             data-name="{{ country.name }}">
                                                             {{ country.name }} ({{ country.dial_code }})
-                                                            
+
                                                         </option>
                                                         {% endfor %}
                                                     </select>
-                                                    
+
                                                     <div class="flex-grow-1">
                                                         <input type="tel" id="phone_number" name="phone_number"
                                                             class="form-control" placeholder="Enter phone number"
@@ -185,30 +185,31 @@
                                     <div class="row">
                                         <div class="col-md-12 mb-2">
                                             <label for="languages">Select Languages *</label>
-                                            <select id="languages" name="selected_language[]" class="form-control select2"
-                                                multiple required>
+                                            <select id="languages" name="selected_language[]"
+                                                class="form-control select2" multiple required>
                                                 {% for language in languages %}
                                                 <option value="{{ language.id }}">{{ language.name }}</option>
                                                 {% endfor %}
                                             </select>
                                         </div>
 
-                                        
-                                    <div class="col-md-12 mb-2">
-                                    <label for="social_media" class="form-label">Select Social Media</label>
-                                    <select id="social_media" class="form-select select2" onchange="addSocialMedia()" required>
-                                        <option disabled selected hidden>Select platform</option>
-                                        <option value="facebook">Facebook</option>
-                                        <option value="linkedin">LinkedIn</option>
-                                        <option value="instagram">Instagram</option>
-                                        <option value="youtube">YouTube</option>
-                                        <option value="twitter">Twitter</option>
-                                    </select>
-                                    </div>
-                                    
-                                    <div class="col-md-12 mb-2" id="social_links"></div>
-                                        
-                                        
+
+                                        <div class="col-md-12 mb-2">
+                                            <label for="social_media" class="form-label">Select Social Media</label>
+                                            <select id="social_media" class="form-select select2"
+                                                onchange="addSocialMedia()" required>
+                                                <option disabled selected hidden>Select platform</option>
+                                                <option value="facebook">Facebook</option>
+                                                <option value="linkedin">LinkedIn</option>
+                                                <option value="instagram">Instagram</option>
+                                                <option value="youtube">YouTube</option>
+                                                <option value="twitter">Twitter</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-md-12 mb-2" id="social_links"></div>
+
+
                                     </div>
                                     <button type="button" class="btn btn-primary-next next-step mb-2">Next</button>
                                     <button type="button" class="btn btn-primary-prev prev-step">Previous</button>
